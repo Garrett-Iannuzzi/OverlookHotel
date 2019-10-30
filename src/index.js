@@ -16,7 +16,6 @@ $(document).ready(() => {
 
 $('.splash__btn--user').on('click', () => {
   $('.form__dropdown--user').removeClass();
-
 });
 
 $('.splash__btn--admin').on('click', () => {
