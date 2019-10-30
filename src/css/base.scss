@@ -33,6 +33,13 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
   .div__dropdown {
     background-color: $secondary-color;
   }
+  
+}
+
+input {
+  height: 5em;
+  margin: 2em;
+  width: 33em;
 }
 
 h1 {
@@ -43,6 +50,10 @@ h1 {
   display: none;
 }
 
+.hidden__btn {
+  display: none;
+}
+
 .form__dropdown--user {
   display: none;
 }
@@ -50,6 +61,13 @@ h1 {
 .form__dropdown--admin {
   display: none;
 }
+
+li {
+  background-color: $secondary-color;
+  list-style: none;
+}
+
+
 
 
 

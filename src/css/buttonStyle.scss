@@ -22,3 +22,8 @@
     box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
   }
 }
+
+.submit__login {
+  @include buttonStyleBase;
+  width: 11.5em;
+}
