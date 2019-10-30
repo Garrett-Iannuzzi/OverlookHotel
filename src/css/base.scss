@@ -1,6 +1,10 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: lavender;
+// /* This is an example of using Sass, otherwise plain CSS works too*/
+// $primary-background: lavender;
 
-body {
-  background-color: $primary-background;
+// body {
+//   background-color: $primary-background;
+// }
+
+.hidden {
+  display: none;
 }
