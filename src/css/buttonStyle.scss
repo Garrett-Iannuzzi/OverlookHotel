@@ -9,7 +9,7 @@
   }
 }
 
-.splash__btn {
+.splash__btn--user, .splash__btn--admin {
   @include buttonStyleBase;
   font-weight: 600;
   margin: 0 auto;

@@ -10,9 +10,14 @@ import './css/base.scss';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 
 $(document).ready(() => {
-  $('.splash__btn').on('click', () => {
-    $('.hidden').removeClass()
-    $('.section__splash').hide()
-  });
+
 })
 
+
+$('.splash__btn--user').on('click', () => {
+  $('.form__dropdown--user').removeClass();
+});
+
+$('.splash__btn--admin').on('click', () => {
+  $('.form__dropdown--admin').removeClass()
+});

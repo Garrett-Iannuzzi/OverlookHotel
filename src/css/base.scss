@@ -35,9 +35,22 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
   }
 }
 
+h1 {
+  font-size: 5em;
+}
 
 .hidden {
   display: none;
 }
+
+.form__dropdown--user {
+  display: none;
+}
+
+.form__dropdown--admin {
+  display: none;
+}
+
+
 
 @import './buttonStyle.scss';
