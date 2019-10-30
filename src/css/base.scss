@@ -1,9 +1,35 @@
 // /* This is an example of using Sass, otherwise plain CSS works too*/
-// $primary-background: lavender;
+$primary-background: hsla(360, 36%, 85%, 1);
+$secondary-color: hsl(240, 17%, 86%);
 
-// body {
-//   background-color: $primary-background;
-// }
+* {
+  background-color: $primary-background;
+  margin: 0;
+  padding: 0;
+}
+
+.section__splash {
+  border: solid 8px grey;
+  background-color: $secondary-color;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 4em;
+  text-align: center;
+  width: 90%;
+
+  &>h1 {
+    background-color: $secondary-color;
+    font-size: 5em;
+    margin: 1em;
+  }
+
+  &>h2 {
+    background-color: $secondary-color;
+    font-size: 3em;
+  }
+}
+
 
 .hidden {
   display: none;
