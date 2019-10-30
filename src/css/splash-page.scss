@@ -1,0 +1,59 @@
+
+.section__splash {
+  border: solid 10px grey;
+  background-color: $secondary-color;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 4em;
+  text-align: center;
+  width: 90%;
+
+  &>h1 {
+    background-color: $secondary-color;
+    font-size: 5em;
+    margin: 2em;
+    text-decoration: underline;
+  }
+
+  &>h2 {
+    background-color: $secondary-color;
+    font-size: 3em;
+  }
+
+  .div__dropdown {
+    background-color: $secondary-color;
+  }
+  
+}
+
+input {
+  height: 5em;
+  margin: 2em;
+  width: 33em;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden__btn {
+  display: none;
+}
+
+.form__dropdown--user {
+  display: none;
+}
+
+.form__dropdown--admin {
+  display: none;
+}
+
+li {
+  background-color: $secondary-color;
+  list-style: none;
+}

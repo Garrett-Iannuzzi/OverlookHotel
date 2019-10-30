@@ -1,7 +1,7 @@
 @mixin buttonStyleBase {
+  border-radius: 8px;
   font-size: 2em;
   height: 2em;
-  margin: 2em;
   width: 15em;
   &:hover {
     background-color: $button-hover-color;
@@ -9,9 +9,21 @@
   }
 }
 
-.splash__btn {
+.splash__btn--user, .splash__btn--admin {
   @include buttonStyleBase;
+  font-weight: 600;
   margin: 0 auto;
   margin-top: 2em;
+  margin-bottom: 1em;
   text-decoration: bold;
+  &:hover {
+    -webkit-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+  }
+}
+
+.submit__login {
+  @include buttonStyleBase;
+  width: 11.5em;
 }

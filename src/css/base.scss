@@ -1,4 +1,3 @@
-// /* This is an example of using Sass, otherwise plain CSS works too*/
 $primary-background: rgb(238, 221, 221);
 $secondary-color: hsl(240, 17%, 86%);
 $button-hover-color: hsla(346, 69%, 75%, 1);
@@ -9,32 +8,10 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
   padding: 0;
 }
 
-.section__splash {
-  border: solid 10px grey;
-  background-color: $secondary-color;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  margin: 4em;
-  text-align: center;
-  width: 90%;
-
-  &>h1 {
-    background-color: $secondary-color;
-    font-size: 5em;
-    margin: 2em;
-    text-decoration: underline;
-  }
-
-  &>h2 {
-    background-color: $secondary-color;
-    font-size: 3em;
-  }
-}
 
 
-.hidden {
-  display: none;
-}
+
+
 
 @import './buttonStyle.scss';
+@import './splash-page.scss'
