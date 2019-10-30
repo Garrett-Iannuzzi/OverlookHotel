@@ -1,0 +1,17 @@
+@mixin buttonStyleBase {
+  font-size: 2em;
+  height: 2em;
+  margin: 2em;
+  width: 15em;
+  &:hover {
+    background-color: $button-hover-color;
+    cursor: pointer;
+  }
+}
+
+.splash__btn {
+  @include buttonStyleBase;
+  margin: 0 auto;
+  margin-top: 2em;
+  text-decoration: bold;
+}
