@@ -6,6 +6,9 @@
   &:hover {
     background-color: $button-hover-color;
     cursor: pointer;
+    -webkit-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
   }
 }
 
@@ -16,14 +19,21 @@
   margin-top: 2em;
   margin-bottom: 1em;
   text-decoration: bold;
-  &:hover {
-    -webkit-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
-  }
 }
 
 .submit__login {
   @include buttonStyleBase;
+  display: block;
+  height: 1.6em;
+  padding-top: 15px;
+  text-decoration: none;
   width: 11.5em;
+    &:hover {
+      background-color: $button-hover-color;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    &:visited {
+      color: black;
+    }
 }

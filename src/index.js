@@ -13,11 +13,14 @@ $(document).ready(() => {
 
 })
 
-
 $('.splash__btn--user').on('click', () => {
-  $('.form__dropdown--user').removeClass();
+  $('.form__dropdown--user').removeClass().css('backgroundColor', 'hsl(240, 17%, 86%)');
+});
+  
+$('.splash__btn--admin').on('click', () => {
+  $('.form__dropdown--admin').removeClass().css('backgroundColor', 'hsl(240, 17%, 86%)');
 });
 
-$('.splash__btn--admin').on('click', () => {
-  $('.form__dropdown--admin').removeClass();
-});
+$('.submit__login').on('load', () => {
+  
+})
