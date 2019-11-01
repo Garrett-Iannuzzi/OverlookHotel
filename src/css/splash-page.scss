@@ -11,7 +11,7 @@
 
   &>h1 {
     background-color: $secondary-color;
-    font-size: 5em;
+    font-size: 6em;
     margin: 2em;
     text-decoration: underline;
   }
@@ -40,10 +40,6 @@ input {
   width: 33em;
 }
 
-h1 {
-  font-size: 5em;
-}
-
 .hidden {
   display: none;
 }
@@ -61,6 +57,5 @@ h1 {
 }
 
 li {
-  background-color: $secondary-color;
   list-style: none;
 }

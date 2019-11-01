@@ -22,6 +22,17 @@ $('#submit__login--admin--js').on('click', (e) => {
   checkInputValue($userName, $password)
 })
 
+$('.tabs__stage div').hide();
+$('.tabs__stage div:first').show();
+$('.nav__ul li:first').addClass('tab__active');
+
+$('.nav__ul a').on('click', function(event){
+event.preventDefault();
+$('.nav__ul li').removeClass('tab__active');
+$(this).parent().addClass('tab__active');
+$('.tabs__stage div').hide();
+$($(this).attr('href')).show();
+});
 
 $('.splash__btn--user').on('click', () => {
   $('.form__dropdown--user').removeClass().css('backgroundColor', 'hsl(240, 17%, 86%)');
