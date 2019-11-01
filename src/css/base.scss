@@ -8,6 +8,52 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
   padding: 0;
 }
 
+h1 {
+  font-size: 6em;
+}
+
+.section__nav {
+  border: solid 5px grey;
+  margin: 3em;
+  height: 100vh;
+}
+
+.tab__active a {
+  cursor: default;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+li {
+  height: .3em;
+  text-align: center;
+  font-size: 2.4em;
+  margin: .5em;
+  padding: 1em;
+  // background:$primary-background;
+  border: solid 4px grey;
+  width: 10%;
+}
+
+.tabs__stage {
+  order: 1px solid #cecfd5;
+  background-color: $primary-background;
+  border-radius: 0 0 6px 6px;
+  border-top: 0px;
+  font-size: 2em;
+  margin-top: 2em;
+  padding: 1em 1em;
+  position: relative;
+}
 
 
 
