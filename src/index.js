@@ -32,8 +32,6 @@ $('#submit__login--admin--js').on('click', (e) => {
   e.preventDefault();
   let $userName = $('#ul__dropdown--admin--js input').val()
   let $password = $('#submit__login--admin--js').prev().val()
-    console.log($userName)
-    console.log($password)
   checkInputValue($userName, $password)
 })
 
