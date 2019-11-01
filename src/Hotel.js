@@ -4,6 +4,8 @@ class Hotel {
     this.rooms = roomsData;
     this.bookings = bookingsData;
   }
+
+  
 }
 
 export default Hotel;

@@ -1,4 +1,6 @@
-class Admin {
+import Hotel from './Hotel'
+
+class Admin extends Hotel {
   constructor() {
 
   }
