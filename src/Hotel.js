@@ -28,15 +28,24 @@ class Hotel {
       }
         return acc;
     }, [])
-  return availableRooms;
-  //Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
+    return availableRooms;
   }
 
-  bookRoom() {
+  // bookRoom(roomNum, dateOfBooking, customerId) {
+  //   let customer = this.getCustomerById(customerId);
+  //   let availableRoomsDate = this.getAvailableRoomDetailsByDate(dateOfBooking)
+  //   if (availableRoomsDate.includes(dateOfBooking)) {
+  //     console.log(availableRoomsDate);
 
-  }
+  //   }
+  //   // let newBooking = availableRooms.find(room => room.number === roomNum);
+  //   // this.bookings.push({ userId: customer.id , date: dateOfBooking, roomNumber: roomNum });
+  // }
 
-  getRoomByType() {
+  getRoomByRoomType(roomSize, date) {
+    let availableRooms = this.getAvailableRoomDetailsByDate(date);
+    let roomsByType = availableRooms.filter(room => room.roomType === roomSize);
+    return roomsByType
     //I should be able to filter the list of available rooms by their roomType property
   }
 

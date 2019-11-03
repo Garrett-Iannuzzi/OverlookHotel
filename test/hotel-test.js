@@ -236,8 +236,49 @@ describe('Hotel', function() {
   });
   
   // it ('should be able to book a room', () => {
-    
+  //   expect(hotel.bookRoom(25, '2019/11/03', 2)).to.eql({
+  //     userID: 2,
+  //     date: '2019/11/17',
+  //     roomNumber: 25,
+  //     })
   // });
+
+  it('should be able to filter by room feature', () => {
+    expect(hotel.getRoomByRoomType('residential suite', '2019/11/03')).to.eql([
+      {
+        number: 1,
+        roomType: 'residential suite',
+        bidet: true,
+        bedSize: 'queen',
+        numBeds: 1,
+        costPerNight: 358.4
+      },
+      {
+        number: 15,
+        roomType: 'residential suite',
+        bidet: false,
+        bedSize: 'full',
+        numBeds: 1,
+        costPerNight: 294.56
+      },
+      {
+        number: 20,
+        roomType: 'residential suite',
+        bidet: false,
+        bedSize: 'queen',
+        numBeds: 1,
+        costPerNight: 343.95
+      },
+      {
+        number: 23,
+        roomType: 'residential suite',
+        bidet: false,
+        bedSize: 'queen',
+        numBeds: 2,
+        costPerNight: 176.36
+      },
+    ]);
+  });
 
 
 });
