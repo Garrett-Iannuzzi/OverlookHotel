@@ -8,20 +8,32 @@ class Hotel {
     this.date = currentDate;
   }
 
-  getCustomerById() {
+  getCustomerById(id) {
+    let customer = this.customerData.find(customer => customer.id === id);
+    return customer
+  }
 
+  getDateForBooking(date) {
+    let bookingdate = this.bookings.find(booking => booking.date === date)
+    return String(bookingdate.date);
+    //I should be able to select a date for which I’d like to book a room for myself
+  }
+
+  getAvailableRoomDetailsByDate(date) {
+    let availableRooms = this.rooms.reduce((acc, room) => {
+      let bookingsByRoom = this.bookings.filter(booking =>
+        booking.roomNumber === room.number);
+      if (!bookingsByRoom.some(booking => booking.date === date)) {
+        acc.push(room);
+      }
+        return acc;
+    }, [])
+  return availableRooms;
+  //Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
   }
 
   bookRoom() {
 
-  }
-
-  getRoomDetailsByDate() {
-  //Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
-  }
-
-  getDateForBooking() {
-    //I should be able to select a date for which I’d like to book a room for myself
   }
 
   getRoomByType() {

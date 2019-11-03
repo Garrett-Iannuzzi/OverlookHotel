@@ -1,12 +1,9 @@
 
 import $ from 'jquery';
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
 import Hotel from './Hotel';
 import Admin from './Admin';
 import Customer from './Customer';
-// import Customer from './Customer';
 
 
 let hotel;
