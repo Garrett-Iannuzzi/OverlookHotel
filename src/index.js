@@ -5,7 +5,7 @@ import $ from 'jquery';
 import './css/base.scss';
 import Hotel from './Hotel';
 import Admin from './Admin';
-import User from './User';
+import User from './Customer';
 
 
 let hotel;
@@ -69,6 +69,6 @@ function checkInputValueAdmin(userName, password) {
 
 function checkInputValueCustomer(userName, password) {
   userName === 'customer50' && password === 'overlook2019' ? 
-    window.location = './user.html' : window.location = './index.html'
+    window.location = './customer.html' : window.location = './index.html'
 }
 

@@ -1,9 +1,9 @@
 import Hotel from './Hotel'
 
-class User extends Hotel {
+class Customer extends Hotel {
   constructor() {
 
   }
 }
 
-export default User;
+export default Customer;
