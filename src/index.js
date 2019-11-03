@@ -5,10 +5,14 @@ import $ from 'jquery';
 import './css/base.scss';
 import Hotel from './Hotel';
 import Admin from './Admin';
-import User from './Customer';
+// import Customer from './Customer';
 
 
 let hotel;
+let admin;
+let customer;
+let today = getCurrentDate();
+
 
 Promise.all([
   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users')
@@ -21,12 +25,25 @@ Promise.all([
     .then(data => data.json())
     .catch(error => console.error('NO DATA')),
 ]).then(data => {
-  hotel = new Hotel(data[0], data[1], data[2]);
+  hotel = new Hotel(data[0], data[1], data[2], today);
+  admin = new Admin(data[0], data[1], data[2], today);
+  updatePage()
   console.log(hotel)
+  console.log(admin)
+
 })
 
-$(document).ready(() => {
-})
+function updatePage() {
+  $('#todays__date').text(today);
+}
+
+function getCurrentDate() {
+  let today = new Date();
+  let year = today.getFullYear();
+  let month = String(today.getMonth() + 1).padStart(2, '0');
+  let day = String(today.getDate()).padStart(2, '0');
+  return `${year}/${month}/${day}`
+};
 
 $('#submit__login--customer--js').on('click', (e) => {
   e.preventDefault();
@@ -64,7 +81,7 @@ $('.splash__btn--admin').on('click', () => {
 
 function checkInputValueAdmin(userName, password) {
   userName === 'manager' && password === 'overlook2019' ? 
-    window.location = './admin.html' : window.location = './index.html'
+    window.location = './admin.html' : window.location = './index.html';
 }
 
 function checkInputValueCustomer(userName, password) {
