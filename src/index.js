@@ -28,12 +28,19 @@ Promise.all([
 $(document).ready(() => {
 })
 
+$('#submit__login--customer--js').on('click', (e) => {
+  e.preventDefault();
+  let $userName = $('#ul__dropdown--customer--js input').val()
+  let $password = $('#submit__login--customer--js').prev().val()
+  checkInputValueCustomer($userName, $password)
+});
+
 $('#submit__login--admin--js').on('click', (e) => {
   e.preventDefault();
   let $userName = $('#ul__dropdown--admin--js input').val()
   let $password = $('#submit__login--admin--js').prev().val()
-  checkInputValue($userName, $password)
-})
+  checkInputValueAdmin($userName, $password)
+});
 
 $('.tabs__stage div').hide();
 $('.tabs__stage div:first').show();
@@ -55,8 +62,13 @@ $('.splash__btn--admin').on('click', () => {
   $('.form__dropdown--admin').removeClass().css('backgroundColor', 'hsl(240, 17%, 86%)');
 });
 
-function checkInputValue(userName, password) {
+function checkInputValueAdmin(userName, password) {
   userName === 'manager' && password === 'overlook2019' ? 
     window.location = './admin.html' : window.location = './index.html'
+}
+
+function checkInputValueCustomer(userName, password) {
+  userName === 'customer50' && password === 'overlook2019' ? 
+    window.location = './user.html' : window.location = './index.html'
 }
 
