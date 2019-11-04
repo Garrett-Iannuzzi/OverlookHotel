@@ -53,6 +53,53 @@ describe('Admin', function() {
 
   it('should be able to get a customers first name', () => {
     expect(admin.getCustomerFirstName(1)).to.equal('Leatha');
-  })
+  });
+
+  it('should be able to get bookings for a customer', () => {
+    expect(admin.getCustomerBookingsDetails(1)).to.eql([
+      {
+        id: 1572293130156,
+        userID: 1,
+        date: "2019/11/03",
+        roomNumber: 18,
+        roomServiceCharges: [ ]
+        },
+        {
+        id: 1572293130159,
+        userID: 1,
+        date: "2019/11/12",
+        roomNumber: 8,
+        roomServiceCharges: [ ]
+        },
+        {
+        id: 1572293130159,
+        userID: 1,
+        date: "2019/10/29",
+        roomNumber: 10,
+        roomServiceCharges: [ ]
+        },
+        {
+        id: 1572293130159,
+        userID: 1,
+        date: "2019/11/15",
+        roomNumber: 4,
+        roomServiceCharges: [ ]
+        },
+        {
+        id: 1572293130160,
+        userID: 1,
+        date: "2019/13/06",
+        roomNumber: 7,
+        roomServiceCharges: [ ]
+        },
+        {
+        id: 1572293130160,
+        userID: 1,
+        date: "2019/11/22",
+        roomNumber: 1,
+        roomServiceCharges: [ ]
+        }
+    ])
+  });
 
 });

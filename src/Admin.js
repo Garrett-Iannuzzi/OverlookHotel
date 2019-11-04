@@ -43,8 +43,8 @@ class Admin extends Hotel {
     return firstName
   }
 
-  getCustomerBookingsDetails() {
-
+  getCustomerBookingsDetails(customerId) {
+    return this.bookings.filter(booking => booking.userID === customerId);
   }
 
   getCustomerRevenue() {
