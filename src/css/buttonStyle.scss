@@ -14,6 +14,7 @@
 
 .splash__btn--user, .splash__btn--admin {
   @include buttonStyleBase;
+  border: solid 2px grey;
   font-weight: 600;
   margin: 0 auto;
   margin-top: 2em;
@@ -23,6 +24,8 @@
 
 .submit__login {
   @include buttonStyleBase;
+  background-color: $primary-background;
+  border: solid 2px grey;
   display: block;
   height: 1.6em;
   padding-top: 15px;
@@ -40,6 +43,7 @@
 
 .home__btn {
   border: solid 3px grey;
+  border-radius: 5px;
   font-size: 1em;
   font-weight: 800;
   height: 5em;
