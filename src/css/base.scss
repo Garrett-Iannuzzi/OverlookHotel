@@ -10,18 +10,22 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 3em;
   &>h1 {
     font-size: 4em;
   }
 }
 
-.img__bell {
-  height: 2em;
-  width: 2em;
+.img__hotel {
+  height: 12em;
+  width: 12em;
 }
 
+section {
+  margin: 0 auto;
+  width: 75%;
+}
 
 .section__nav {
   border: solid 4px grey;
@@ -75,8 +79,6 @@ h2 {
   height: 1em;
   margin: .8em;
 }
-
-
 
 
 

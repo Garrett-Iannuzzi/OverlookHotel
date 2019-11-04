@@ -1,13 +1,14 @@
 
 .section__splash {
   border: solid 10px grey;
-  background-color: $secondary-color;
+  background-color: #d5d5e1;
   display: flex;
   flex-direction: column;
   height: 100vh;
-  margin: 4em;
+  margin-top: 5em;
+  margin-bottom: 5em;
   text-align: center;
-  width: 90%;
+  width: 75%;
 
   &>h1 {
     background-color: $secondary-color;
