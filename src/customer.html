@@ -24,8 +24,13 @@
                   <h2 class="h2__rooms--available" id="label__rooms--available--js">Booking History: <span id="rooms__today">loading...</span></p>
                   <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span class="span__loading">loading...</span></h2>
                 </div>
-                <div id="tab__bookings">
+                <div class="tab__booking" id="tab__bookings">
                   <button class="btn__bookings">See Your Bookings</button>
+                  <label class="date__picker--label" for="start">Make A Reservation:</label>
+                  <input class="date__picker" type="date" id="start" name="trip-start"
+                    value="2018-07-22"
+                    min="2019-11-01" max="2020-11-01">
+                  <button>Make New Reservation</button>
                 </div>
               </div>
             </nav>

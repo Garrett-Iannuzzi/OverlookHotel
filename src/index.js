@@ -43,8 +43,8 @@ function getCurrentDate() {
 };
 
 // $('#rooms__today').text(admin.getTotalRoomsAvailableToday(today));
-  // $('#span__revenue').text(admin.getTotalRevenueToday(today));
-  // $('#span__percent--rooms').text(admin.getPercentRoomsOccupiedByDate(today));
+//   $('#span__revenue').text(admin.getTotalRevenueToday(today));
+//   $('#span__percent--rooms').text(admin.getPercentRoomsOccupiedByDate(today));
 
 $('#submit__login--customer--js').on('click', (e) => {
   e.preventDefault();
@@ -97,6 +97,16 @@ function checkInputValueCustomer(userName, password) {
   }
   $('.input').addClass('error').val('')
 }
+
+// function searchCustomers() {
+//   let $customerSearch = $('#div__input--customer--js').val();
+//   if ($customerSearch === !'') {
+//     //filter through customers to see if customer exisits
+//     //if they do fire a function that displays their into
+//   } else {
+//     //if they dont then append error message 
+//   }
+// }
 
 
 
