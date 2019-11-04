@@ -1,5 +1,3 @@
-// import Admin from './Admin';
-
 class Hotel {
   constructor(userData, roomsData, bookingsData, currentDate) {
     this.customerData = userData || [];
