@@ -47,8 +47,17 @@ class Admin extends Hotel {
     return this.bookings.filter(booking => booking.userID === customerId);
   }
 
-  getCustomerRevenue() {
-
+  getCustomerRevenue(customerId) {
+    let customerBookings = this.getCustomerBookingsDetails(customerId);
+    let totalRevenue = customerBookings.reduce((total, booking) => {
+      this.rooms.forEach(room => {
+        if (room.number === booking.roomNumber) {
+          total += room.costPerNight
+        }
+      })
+      return total
+    }, 0)
+    return Number(totalRevenue)
   }
 
   addBookingForCustomer() {

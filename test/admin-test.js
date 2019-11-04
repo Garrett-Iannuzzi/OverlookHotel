@@ -35,20 +35,20 @@ describe('Admin', function() {
     });
 
     it('should have the current date', () => {
-      expect(admin.date).to.equal('2019/11/03')
+      expect(admin.date).to.equal('2019/11/03');
     });
   });
 
   it('should be able to get total rooms available by current date', () => {
-    expect(admin.getTotalRoomsAvailableToday('2019/11/03')).to.equal(23)
+    expect(admin.getTotalRoomsAvailableToday('2019/11/03')).to.equal(23);
   });
 
   it('should be able to get total percent of occupied rooms by current date', () => {
-    expect(admin.getPercentRoomsOccupiedByDate('2019/11/03')).to.equal(.04)
+    expect(admin.getPercentRoomsOccupiedByDate('2019/11/03')).to.equal(.04);
   });
 
   it('should be able to get total revenue by current date', () => {
-    expect(admin.getTotalRevenueToday('2019/11/03')).to.equal(954.29)
+    expect(admin.getTotalRevenueToday('2019/11/03')).to.equal(954.29);
   });
 
   it('should be able to get a customers first name', () => {
@@ -99,7 +99,11 @@ describe('Admin', function() {
         roomNumber: 1,
         roomServiceCharges: [ ]
         }
-    ])
+    ]);
+  });
+
+  it('should be able to get a customers revenue', () => {
+    expect(admin.getCustomerRevenue(1)).to.equal(2274.61)
   });
 
 });
