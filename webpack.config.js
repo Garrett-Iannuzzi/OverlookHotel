@@ -38,8 +38,8 @@ module.exports = {
       template: './src/index.html'
     }),
     new HtmlWebpackPlugin({
-      filename: 'user.html',
-      template: './src/user.html'
+      filename: 'customer.html',
+      template: './src/customer.html'
     }),
     new HtmlWebpackPlugin({
       filename: 'admin.html',
