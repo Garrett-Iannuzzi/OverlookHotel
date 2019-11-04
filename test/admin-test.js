@@ -51,4 +51,8 @@ describe('Admin', function() {
     expect(admin.getTotalRevenueToday('2019/11/03')).to.equal(954.29)
   });
 
+  it('should be able to get a customers first name', () => {
+    expect(admin.getCustomerFirstName(1)).to.equal('Leatha');
+  })
+
 });

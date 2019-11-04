@@ -28,7 +28,6 @@ Promise.all([
   updatePage()
   console.log(hotel)
   console.log(admin)
-
 })
 
 function updatePage() {
@@ -42,6 +41,10 @@ function getCurrentDate() {
   let day = String(today.getDate()).padStart(2, '0');
   return `${year}/${month}/${day}`
 };
+
+  $('#rooms__today').text(admin.getTotalRoomsAvailableToday(today));
+  $('#span__revenue').text(admin.getTotalRevenueToday(today));
+  $('#span__percent--rooms').text(admin.getPercentRoomsOccupiedByDate(today));
 
 $('#submit__login--customer--js').on('click', (e) => {
   e.preventDefault();

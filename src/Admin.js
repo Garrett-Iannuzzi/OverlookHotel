@@ -37,8 +37,10 @@ class Admin extends Hotel {
     return percentOccupied
   }
 
-  getCustomerName() {
-
+  getCustomerFirstName(customerId) {
+    let customer = this.customer.find(customer => customer.id === customerId);
+    let firstName = customer.name.split(' ')[0];
+    return firstName
   }
 
   getCustomerBookingsDetails() {
