@@ -47,4 +47,8 @@ describe('Admin', function() {
     expect(admin.getPercentRoomsOccupiedByDate('2019/11/03')).to.equal(.04)
   });
 
+  it('should be able to get total revenue by current date', () => {
+    expect(admin.getTotalRevenueToday('2019/11/03')).to.equal(954.29)
+  });
+
 });

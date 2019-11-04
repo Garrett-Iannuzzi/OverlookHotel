@@ -19,8 +19,16 @@ class Admin extends Hotel {
     return Number(this.rooms.length - roomsWithCustomers)
   }
 
-  getTotalRevenueToday() {
-
+  getTotalRevenueToday(date) {
+    let bookingsByDate = this.bookings.filter(booking => booking.date === date);
+    let totalRev = bookingsByDate.reduce((acc, room) => {
+      this.rooms.forEach(item => {
+        if(item.number === room.roomNumber)
+          acc += item.costPerNight
+        })
+        return acc
+    }, 0);
+    return Number(totalRev.toFixed(2))
   }
 
   getPercentRoomsOccupiedByDate(date) {
