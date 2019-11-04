@@ -42,9 +42,9 @@ function getCurrentDate() {
   return `${year}/${month}/${day}`
 };
 
-  $('#rooms__today').text(admin.getTotalRoomsAvailableToday(today));
-  $('#span__revenue').text(admin.getTotalRevenueToday(today));
-  $('#span__percent--rooms').text(admin.getPercentRoomsOccupiedByDate(today));
+// $('#rooms__today').text(admin.getTotalRoomsAvailableToday(today));
+  // $('#span__revenue').text(admin.getTotalRevenueToday(today));
+  // $('#span__percent--rooms').text(admin.getPercentRoomsOccupiedByDate(today));
 
 $('#submit__login--customer--js').on('click', (e) => {
   e.preventDefault();
@@ -80,14 +80,23 @@ $('.splash__btn--admin').on('click', () => {
   $('.form__dropdown--admin').removeClass().css('backgroundColor', 'hsl(240, 17%, 86%)');
 });
 
+$('.home__btn').on('click', () => {
+  window.location = './index.html';
+})
+
 function checkInputValueAdmin(userName, password) {
-  userName === 'manager' && password === 'overlook2019' ? 
-    window.location = './admin.html' : window.location = './index.html';
+  if (userName === 'manager' && password === 'overlook2019') {
+    window.location = './admin.html';
+  }
+  $('.input').addClass('error').val('')
 }
 
 function checkInputValueCustomer(userName, password) {
-  userName === 'customer50' && password === 'overlook2019' ? 
-    window.location = './customer.html' : window.location = './index.html';
-  // customer = new Customer(user)
+  if (userName === 'customer50' && password === 'overlook2019') {
+    window.location = './customer.html';
+  }
+  $('.input').addClass('error').val('')
 }
+
+
 
