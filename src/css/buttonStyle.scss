@@ -48,7 +48,7 @@
   font-size: 1em;
   font-weight: 800;
   height: 5em;
-  width: 10em;
+  width: 15em;
   &:hover {
     background-color: $button-hover-color;
     cursor: pointer;
@@ -67,4 +67,12 @@
   font-weight: 600;
   height: 2em;
   width: 8em;
+}
+
+.btn__bookings {
+  @include buttonStyleBase;
+  border: solid 2px grey;
+  font-size: 1.3em;
+  height: 2em;
+  width: 40%;
 }
