@@ -37,3 +37,18 @@
       color: black;
     }
 }
+
+.home__btn {
+  border: solid 3px grey;
+  font-size: 1em;
+  font-weight: 800;
+  height: 5em;
+  width: 10em;
+  &:hover {
+    background-color: $button-hover-color;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
+  }
+}

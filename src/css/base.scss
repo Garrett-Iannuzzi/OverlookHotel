@@ -8,9 +8,15 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
   padding: 0;
 }
 
-h1 {
-  font-size: 6em;
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 3em;
+  &>h1 {
+    font-size: 6em;
+  }
 }
+
 
 .section__nav {
   border: solid 5px grey;

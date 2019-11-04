@@ -80,6 +80,10 @@ $('.splash__btn--admin').on('click', () => {
   $('.form__dropdown--admin').removeClass().css('backgroundColor', 'hsl(240, 17%, 86%)');
 });
 
+$('.home__btn').on('click', () => {
+  window.location = './index.html';
+})
+
 function checkInputValueAdmin(userName, password) {
   if (userName === 'manager' && password === 'overlook2019') {
     window.location = './admin.html';
