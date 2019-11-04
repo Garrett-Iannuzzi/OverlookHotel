@@ -52,3 +52,14 @@
     box-shadow: 0px 4px 22px 0px rgba(0,0,0,0.75);
   }
 }
+
+.div__btn--customer {
+  @include buttonStyleBase;
+  border-radius: 8px;
+  border: solid 2px grey;
+  color: black;
+  font-size: .8em;
+  font-weight: 600;
+  height: 2em;
+  width: 8em;
+}
