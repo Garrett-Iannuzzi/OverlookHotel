@@ -25,7 +25,7 @@ Promise.all([
 ]).then(data => {
   hotel = new Hotel(data[0], data[1], data[2], today);
   admin = new Admin(data[0], data[1], data[2], today);
-  // updatePage()
+  updatePage()
   console.log(hotel)
   console.log(admin)
 })
@@ -42,7 +42,7 @@ function getCurrentDate() {
   return `${year}/${month}/${day}`
 };
 
-  // $('#rooms__today').text(admin.getTotalRoomsAvailableToday(today));
+// $('#rooms__today').text(admin.getTotalRoomsAvailableToday(today));
   // $('#span__revenue').text(admin.getTotalRevenueToday(today));
   // $('#span__percent--rooms').text(admin.getPercentRoomsOccupiedByDate(today));
 
