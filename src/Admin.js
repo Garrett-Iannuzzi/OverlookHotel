@@ -23,8 +23,10 @@ class Admin extends Hotel {
 
   }
 
-  getPercentRoomsOccupiedToday() {
-
+  getPercentRoomsOccupiedByDate(date) {
+    let bookingsByDate = this.bookings.filter(booking => booking.date === date);
+    let percentOccupied = Number((bookingsByDate.length / 50).toFixed(2))
+    return percentOccupied
   }
 
   getCustomerName() {

@@ -13,7 +13,7 @@ let admin;
 describe('Admin', function() {
 
   beforeEach(() => {
-    // hotel = new Hotel(sampleCustomerData, sampleRoomsData, sampleBookingsData, '2019/11/03');
+    hotel = new Hotel(sampleCustomerData, sampleRoomsData, sampleBookingsData, '2019/11/03');
     admin = new Admin(sampleCustomerData, sampleRoomsData, sampleBookingsData, '2019/11/03');
   });
 
@@ -39,9 +39,12 @@ describe('Admin', function() {
     });
   });
 
-  it('should be able to get total rooms available by date', () => {
+  it('should be able to get total rooms available by current date', () => {
     expect(admin.getTotalRoomsAvailableToday('2019/11/03')).to.equal(23)
   });
 
+  it('should be able to get total percent of occupied rooms by current date', () => {
+    expect(admin.getPercentRoomsOccupiedByDate('2019/11/03')).to.equal(.04)
+  });
 
 });
