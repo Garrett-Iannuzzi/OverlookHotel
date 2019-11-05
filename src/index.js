@@ -41,7 +41,8 @@ function createCustomer() {
   const randomCustomer = generateRandomUserId()
   const userInfo = users.find(person => person.id === randomCustomer)
   let customerBookings = bookings.filter(booking => booking.userID === randomCustomer)
-  customer = new Customer(userInfo, null, customerBookings, today)
+  customer = new Customer(userInfo, rooms, customerBookings, today)
+  console.log(customer)
 }
 
 const adminView = () => (

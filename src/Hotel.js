@@ -7,7 +7,6 @@ class Hotel {
   }
 
   getCustomerById(id) {
-    console.log('yo')
     let customer = this.customerData.find(customer => customer.id === id);
     return customer
   }
