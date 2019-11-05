@@ -10,6 +10,7 @@ let admin;
 let customer;
 let today = getCurrentDate();
 let randomCustomer = generateRandomUserId();
+let availableRooms;
 
 let users;
 let bookings;
@@ -120,8 +121,8 @@ const customerView = () => (
                   <option value="junior suite">Junior Suite</option>
                   <option value="residential suite">Residential Suite</option>
                 </select>
-                <select class="avalible__rooms" id="avalible__rooms--js">
-                  <option class="list__avalible--rooms">Select A Room</option>
+                <select class="available__rooms" id="available__rooms--js">
+                  <option class="list__available--rooms">Select A Room</option>
                 </select>
                 <button class="btn__reservation" id="btn__reservation--js">Make New Reservation</button>
               </section>
@@ -164,16 +165,16 @@ function updateCustomerPage() {
   $('#btn__bookings--js').on('click', function() {
     $('.list__guest--bookings').show().css('display','block')
   });
-  $('#btn__avalible--rooms--js').on('click', function() {
-    $('.list__avalible--rooms').show().css('display','block')
+  $('#btn__available--rooms--js').on('click', function() {
+    $('.list__available--rooms').show().css('display','block')
   });
   customerBookinghandler()
 }
 
 function customerBookinghandler() {
+  $('#date__picker--js').on('keyup', customerBooking);
+  $('#room__types').on('change', filterRoomType)
   handleTabs()
-  // filterRoomType()
-  customerBooking()
 }
 
 function getCurrentDate() {
@@ -207,14 +208,14 @@ $('.splash__btn--admin').on('click', () => {
 });
 
 function checkInputValueAdmin(userName, password) {
-  if (userName === 'manager' && password === '123') {
+  if (userName === 'm' && password === '123') {
     updateAdminPage()
   }
   $('.input').addClass('error').val('')
 }
 
 function checkInputValueCustomer(userName, password) {
-  if (userName === 'customer50' && password === '123') {
+  if (userName === 'c' && password === '123') {
     updateCustomerPage()
     createCustomer()
   }
@@ -231,30 +232,27 @@ function displayGuestBookings() {
   });
 }
 
+function filterRoomType() {
+    let type = $('#room__types').find(':selected').val();
+    let filteredRooms = availableRooms.filter(room => room.roomType === type);
+    $('#available__rooms--js').html('');
+    filteredRooms.forEach(room => {
+      const roomItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+      $('#available__rooms--js').append(roomItem);
+    });
+} 
+  
 function customerBooking() {
-  $('#date__picker--js').on('keyup', () => {
-    let dateValue = $('#date__picker--js').val()
-    $('#avalible__rooms--js').on('click', () => {
-      let avalibleRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
-      $('#avalible__rooms--js').html('');
-      avalibleRooms.forEach(room => {
-        let roomsList = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
-        $('#avalible__rooms--js').append(roomsList);
+    const dateValue = $('#date__picker--js').val()
+    $('#available__rooms--js').on('click', () => {
+      availableRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
+      $('#available__rooms--js').html('');
+      availableRooms.forEach(room => {
+       const roomsList = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+        $('#available__rooms--js').append(roomsList);
       });
     })
-  })
-  // filterRoomType()
 }
 
-// function filterRoomType() {
-//   let dateValue = $('#date__picker--js').val()
-//   let availableRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
-//   console.log(preferredRooms)
-//   $('#room__types').on('change', () => {
-//     let type = $('#room__types').find(':selected').val();
-//   })
-
-// } 
-  
 
 
