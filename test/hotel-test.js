@@ -234,14 +234,17 @@ describe('Hotel', function() {
         }
     ]);
   });
+
+  describe('Book Room', () => {
+
+    it ('should be able to book a room', () => {
+      expect(hotel.bookings.length).to.eql(39);
+      hotel.bookRoom(25, '2019/11/03', 2);
+      expect(hotel.bookings.length).to.eql(40);
+    });
+
+  })
   
-  // it ('should be able to book a room', () => {
-  //   expect(hotel.bookRoom(25, '2019/11/03', 2)).to.eql({
-  //     userID: 2,
-  //     date: '2019/11/17',
-  //     roomNumber: 25,
-  //     })
-  // });
 
   it('should be able to filter by room feature', () => {
     expect(hotel.getRoomByRoomType('residential suite', '2019/11/03')).to.eql([

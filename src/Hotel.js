@@ -14,7 +14,6 @@ class Hotel {
   getDateForBooking(date) {
     let bookingdate = this.bookings.find(booking => booking.date === date)
     return String(bookingdate.date);
-    //I should be able to select a date for which I’d like to book a room for myself
   }
 
   getAvailableRoomDetailsByDate(date) {
@@ -29,22 +28,19 @@ class Hotel {
     return availableRooms;
   }
 
-  // bookRoom(roomNum, dateOfBooking, customerId) {
-  //   let customer = this.getCustomerById(customerId);
-  //   let availableRoomsDate = this.getAvailableRoomDetailsByDate(dateOfBooking)
-  //   if (availableRoomsDate.includes(dateOfBooking)) {
-  //     console.log(availableRoomsDate);
-
-  //   }
-  //   // let newBooking = availableRooms.find(room => room.number === roomNum);
-  //   // this.bookings.push({ userId: customer.id , date: dateOfBooking, roomNumber: roomNum });
-  // }
+  bookRoom(roomNum, dateOfBooking, customerId) {
+    let customer = this.getCustomerById(customerId);
+    let availableRooms = this.getAvailableRoomDetailsByDate(dateOfBooking);
+    let index = availableRooms.findIndex(room => room.number === roomNum)
+    availableRooms.splice(index, 1);
+    let booking = { userId: customer.id , date: dateOfBooking, roomNumber: roomNum };
+    this.bookings.push(booking)
+  }
 
   getRoomByRoomType(roomSize, date) {
     let availableRooms = this.getAvailableRoomDetailsByDate(date);
     let roomsByType = availableRooms.filter(room => room.roomType === roomSize);
     return roomsByType
-    //I should be able to filter the list of available rooms by their roomType property
   }
 
   errorDisplayIfRoomNotAvailable() {
