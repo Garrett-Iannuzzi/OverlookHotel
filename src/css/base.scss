@@ -1,6 +1,22 @@
 $primary-background: rgb(238, 221, 221);
 $secondary-color: hsl(240, 17%, 86%);
 $button-hover-color: hsla(346, 69%, 75%, 1);
+@mixin appendBookingDetails {
+  background-color: $secondary-color;
+  border: solid grey;
+  display: none;
+  max-height: 30em;
+  margin: 0;
+  overflow: auto;
+  &>li {
+    color: black;
+    background-color: $secondary-color;
+    &>h6 {
+      background-color: $secondary-color;
+      font-size: .5em;
+    }
+  }
+}
 
 * {
   background-color: $primary-background;
@@ -83,22 +99,16 @@ h2 {
 }
 
 .list__guest--bookings {
-  background-color: $secondary-color;
-  border: solid grey;
-  display: none;
-  max-height: 30em;
-  margin: 0;
-  overflow: auto;
-  &>li {
-    color: black;
-    background-color: $secondary-color;
-    &>h6 {
-      background-color: $secondary-color;
-      font-size: .5em;
-    }
-  }
+  @include appendBookingDetails;
 }
 
+.list__avalible--rooms {
+  @include appendBookingDetails;
+}
+
+.error {
+  border: solid 4px red;
+}
 
 
 

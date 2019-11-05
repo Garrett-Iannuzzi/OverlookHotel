@@ -74,5 +74,24 @@
   border: solid 2px grey;
   font-size: 1.3em;
   height: 2em;
+  margin-bottom: 2em;
+  width: 40%;
+}
+
+.btn__reservation {
+  @include buttonStyleBase;
+  border: solid 2px grey;
+  font-size: 1.3em;
+  height: 2em;
+  margin-top: 1.5em;
+  width: 40%;
+}
+
+.btn__avalible--rooms {
+  @include buttonStyleBase;
+  border: solid 2px grey;
+  font-size: 1.3em;
+  height: 2em;
+  margin-top: 1.5em;
   width: 40%;
 }
