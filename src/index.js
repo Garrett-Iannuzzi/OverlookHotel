@@ -1,6 +1,5 @@
 
 import $ from 'jquery';
-window.$ = window.jQuery = 'jquery';
 import './css/base.scss';
 import Hotel from './Hotel';
 import Admin from './Admin';
@@ -112,10 +111,10 @@ const customerView = () => (
               <button class="btn__bookings" id="btn__bookings--js">See Your Bookings</button>
               <ul class="list__guest--bookings"></ul>
               <label class="date__picker--label" for="start">Make A Reservation:</label>
-              <input class="date__picker" type="date" id="start" name="trip-start"
-                value="2018-07-22"
-                min="2019-11-01" max="2020-11-01">
-              <button>Make New Reservation</button>
+              <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd">
+              <button class="btn__avalible--rooms" id="btn__avalible--rooms--js">See Available Rooms</button>
+              <ul class="list__avalible--rooms"></ul>
+              <button class="btn__reservation" id="btn__reservation--js">Make New Reservation</button>
             </div>
           </div>
         </nav>
@@ -156,6 +155,7 @@ function updateCustomerPage() {
     $('.list__guest--bookings').show().css('display','block')
   });
   handleTabs()
+  handleCustomerBooking()
 }
 
 function getCurrentDate() {
@@ -211,6 +211,22 @@ function displayGuestBookings() {
     let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
     $('.list__guest--bookings').append(bookingsList);
   });
+}
+
+function handleCustomerBooking(e) {
+  $('#date__picker--js').on('keyup', (e) => {
+    let dateValue = $('#date__picker--js').val()
+    console.log(dateValue)
+    $('#btn__avalible--rooms--js').on('click', () => {
+      let avalibleRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
+      $('.list__avalible--rooms').html('');
+      avalibleRooms.forEach(room => {
+        let roomsList = $(`<li><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></li>`);
+        $('.list__avalible--rooms').append(roomsList);
+      });
+    })
+  })
+
 }
   
 
