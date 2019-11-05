@@ -17,11 +17,6 @@ header {
   }
 }
 
-.img__hotel {
-  height: 12em;
-  width: 12em;
-}
-
 section {
   margin: 0 auto;
   width: 75%;
@@ -74,11 +69,36 @@ li {
   position: relative;
 }
 
+.tab__booking {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
 h2 {
   font-size: 1.5em;
   height: 1em;
   margin: .8em;
 }
+
+.list__guest--bookings {
+  background-color: $secondary-color;
+  border: solid grey;
+  display: none;
+  max-height: 30em;
+  margin: 0;
+  overflow: auto;
+  &>li {
+    color: black;
+    background-color: $secondary-color;
+    &>h6 {
+      background-color: $secondary-color;
+      font-size: .5em;
+    }
+  }
+}
+
 
 
 
