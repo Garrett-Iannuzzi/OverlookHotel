@@ -39,10 +39,9 @@ function generateRandomUserId() {
 
 function createCustomer() {
   const randomCustomer = generateRandomUserId()
-  // filter for userRooms
-  // filter for userBookings
-  customer = new Customer(bookings)
-  customer.getAllBookings(randomCustomer)
+  const userInfo = users.find(person => person.id === randomCustomer)
+  let customerBookings = bookings.filter(booking => booking.userID === randomCustomer)
+  customer = new Customer(userInfo, null, customerBookings, today)
 }
 
 const adminView = () => (
@@ -64,7 +63,7 @@ const adminView = () => (
                   <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
                   <h2 class="h2__rooms--available" id="label__rooms--available--js">Total Rooms Available Today: <span id="rooms__today">${admin.getTotalRoomsAvailableToday(today)}</span></p>
                   <h2 class="h2__revenue" id="label__revenue--js">Todays Revenue: $ <span id="span__revenue">${admin.getTotalRoomsAvailableToday(today)}</span></h2>
-                  <h2 class="h2__rooms--taken" id="label__rooms--taken--js">Percentage of rooms occupied for today's date: <span id="span__percent--rooms">loading...</span>${admin.getPercentRoomsOccupiedByDate(today)} %</h2>
+                  <h2 class="h2__rooms--taken" id="label__rooms--taken--js">Percentage of rooms occupied for today's date: <span id="span__percent--rooms"></span>${admin.getPercentRoomsOccupiedByDate(today)} %</h2>
                 </div>
                 <div id="tab__customer">
                   <h2 class="h2__search">Search Current Customers: </h2>
@@ -88,37 +87,37 @@ const adminView = () => (
 )
 
 const customerView = () => (
-`
-<header class="header__user">
-<h1 class="header">Welcome To The Overlook Hotel</h1>
-<button class="home__btn">Home</button>
-</header>
-<main>
-<section>
-    <nav class="section__nav">
-        <ul class="nav__ul">
-          <li class="ul__tab--main"><a href="#tab__main">Main</a></li>
-          <li class="ul__tab--rooms"><a href="#tab__bookings">Bookings</a></li>
-        </ul>
-        <div class="tabs__stage">
-          <div id="tab__main">
-            <h2 class="h2--date">Today's Date: <span id="todays__date"></span></h2>
-            <h2 class="h2__rooms--available" id="label__rooms--available--js">Booking History: <span id="rooms__today">loading...</span></p>
-            <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span class="span__loading">loading...</span></h2>
+  `
+  <header class="header__user">
+  <h1 class="header">Welcome To The Overlook Hotel</h1>
+  <button class="home__btn">Home</button>
+  </header>
+  <main>
+  <section>
+      <nav class="section__nav">
+          <ul class="nav__ul">
+            <li class="ul__tab--main"><a href="#tab__main">Main</a></li>
+            <li class="ul__tab--rooms"><a href="#tab__bookings">Bookings</a></li>
+          </ul>
+          <div class="tabs__stage">
+            <div id="tab__main">
+              <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
+              <h2 class="h2__rooms--available" id="label__rooms--available--js">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
+              <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span class="span__loading">loading...</span></h2>
+            </div>
+            <div class="tab__booking" id="tab__bookings">
+              <button class="btn__bookings">See Your Bookings</button>
+              <label class="date__picker--label" for="start">Make A Reservation:</label>
+              <input class="date__picker" type="date" id="start" name="trip-start"
+                value="2018-07-22"
+                min="2019-11-01" max="2020-11-01">
+              <button>Make New Reservation</button>
+            </div>
           </div>
-          <div class="tab__booking" id="tab__bookings">
-            <button class="btn__bookings">See Your Bookings</button>
-            <label class="date__picker--label" for="start">Make A Reservation:</label>
-            <input class="date__picker" type="date" id="start" name="trip-start"
-              value="2018-07-22"
-              min="2019-11-01" max="2020-11-01">
-            <button>Make New Reservation</button>
-          </div>
-        </div>
-      </nav>
-</section>
-</main>
-`
+        </nav>
+  </section>
+  </main>
+  `
 )
 
 function goHome() {

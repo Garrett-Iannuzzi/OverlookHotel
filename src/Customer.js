@@ -3,12 +3,13 @@ import Hotel from './Hotel'
 class Customer extends Hotel {
   constructor(customerData, roomsData, bookingsData, currentDate) {
     super(customerData, roomsData, bookingsData, currentDate)
-    
+    this.id = customerData.id;
+    this.name = customerData.name;
+    this.customerBookings = bookingsData;
   }
 
-  getAllBookings(id) {
-    // filter for user id 5
-    console.log(this)
+  getAllBookings() {
+    return this.bookings
   }
 
   getTotalSpentOnRooms() {
