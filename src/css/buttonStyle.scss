@@ -87,11 +87,14 @@
   width: 40%;
 }
 
-.btn__avalible--rooms {
+.avalible__rooms {
   @include buttonStyleBase;
   border: solid 2px grey;
   font-size: 1.3em;
   height: 2em;
   margin-top: 1.5em;
   width: 40%;
+    &>option {
+      font-size: 2em;
+    }
 }
