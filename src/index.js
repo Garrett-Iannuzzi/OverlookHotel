@@ -1,5 +1,6 @@
 
 import $ from 'jquery';
+window.$ = window.jQuery = 'jquery';
 import './css/base.scss';
 import Hotel from './Hotel';
 import Admin from './Admin';
@@ -9,6 +10,7 @@ let hotel;
 let admin;
 let customer;
 let today = getCurrentDate();
+let randomCustomer = generateRandomUserId();
 
 let users;
 let bookings;
@@ -38,16 +40,15 @@ function generateRandomUserId() {
 }
 
 function createCustomer() {
-  const randomCustomer = generateRandomUserId()
   const userInfo = users.find(person => person.id === randomCustomer)
   let customerBookings = bookings.filter(booking => booking.userID === randomCustomer)
   customer = new Customer(userInfo, rooms, customerBookings, today)
-  console.log(customer)
+  $('#span__total--spent').text(customer.getTotalSpentOnRooms())
 }
 
 const adminView = () => (
-  `
-   <header>
+`
+    <header>
       <h1>OL Hotel Admin Access </h1>
       <button class="home__btn">Home</button>
     </header>
@@ -83,12 +84,12 @@ const adminView = () => (
               </div>
             </nav>
       </section>
-    </main>
+      </main>
 `
 )
 
 const customerView = () => (
-  `
+  `  
   <header class="header__user">
   <h1 class="header">Welcome To The Overlook Hotel</h1>
   <button class="home__btn">Home</button>
@@ -102,12 +103,14 @@ const customerView = () => (
           </ul>
           <div class="tabs__stage">
             <div id="tab__main">
+              <h2 class="welcome__message">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
               <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
               <h2 class="h2__rooms--available" id="label__rooms--available--js">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
-              <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span class="span__loading">loading...</span></h2>
+              <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
             </div>
             <div class="tab__booking" id="tab__bookings">
-              <button class="btn__bookings">See Your Bookings</button>
+              <button class="btn__bookings" id="btn__bookings--js">See Your Bookings</button>
+              <ul class="list__guest--bookings"></ul>
               <label class="date__picker--label" for="start">Make A Reservation:</label>
               <input class="date__picker" type="date" id="start" name="trip-start"
                 value="2018-07-22"
@@ -148,6 +151,10 @@ function updateAdminPage() {
 function updateCustomerPage() {
   $('.body').html(customerView())
   $('.home__btn').on('click', goHome)
+  $('#btn__bookings--js').on('click', displayGuestBookings)
+  $('#btn__bookings--js').on('click', function() {
+    $('.list__guest--bookings').show().css('display','block')
+  });
   handleTabs()
 }
 
@@ -196,15 +203,15 @@ function checkInputValueCustomer(userName, password) {
   $('.input').addClass('error').val('')
 }
 
-// function searchCustomers() {
-//   let $customerSearch = $('#div__input--customer--js').val();
-//   if ($customerSearch === !'') {
-//     //filter through customers to see if customer exisits
-//     //if they do fire a function that displays their into
-//   } else {
-//     //if they dont then append error message 
-//   }
-// }
-
+function displayGuestBookings() {
+  $('.list__display--bookings').show()
+  let guestBookings = customer.getAllBookings()
+  $('.list__guest--bookings').html('');
+  guestBookings.forEach(booking => {
+    let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
+    $('.list__guest--bookings').append(bookingsList);
+  });
+}
+  
 
 
