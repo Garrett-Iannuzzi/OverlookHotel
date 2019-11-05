@@ -154,6 +154,9 @@ function updateCustomerPage() {
   $('#btn__bookings--js').on('click', function() {
     $('.list__guest--bookings').show().css('display','block')
   });
+  $('#btn__avalible--rooms--js').on('click', function() {
+    $('.list__avalible--rooms').show().css('display','block')
+  });
   handleTabs()
   handleCustomerBooking()
 }
@@ -213,10 +216,9 @@ function displayGuestBookings() {
   });
 }
 
-function handleCustomerBooking(e) {
-  $('#date__picker--js').on('keyup', (e) => {
+function handleCustomerBooking() {
+  $('#date__picker--js').on('keyup', () => {
     let dateValue = $('#date__picker--js').val()
-    console.log(dateValue)
     $('#btn__avalible--rooms--js').on('click', () => {
       let avalibleRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
       $('.list__avalible--rooms').html('');
@@ -226,7 +228,6 @@ function handleCustomerBooking(e) {
       });
     })
   })
-
 }
   
 
