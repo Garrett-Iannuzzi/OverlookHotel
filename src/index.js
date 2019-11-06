@@ -99,6 +99,7 @@ const adminView = () => (
                     <option class="list__available--rooms--admin" tabindex="0">Select A Room</option>
                   </select>
                   <button class="btn__reservation--admin--final" id="btn__reservation--admin--final--js" role="See room list">Make Reservation</button>
+                  <h6 class="all__done">Booking Has Been Made!</h6>
                 </div>
             </nav>
       </section>
@@ -143,6 +144,7 @@ const customerView = () => (
                   <option class="list__available--rooms" tabindex="0">Select A Room</option>
                 </select>
                 <button class="btn__reservation" id="btn__reservation--js" role="Make reservation">Make New Reservation</button>
+                <h6 class="all__done">Booking Has Been Made!</h6>
               </section>
             </div>
           </div>
@@ -234,14 +236,14 @@ $('.splash__btn--admin').on('click', () => {
 });
 
 function checkInputValueAdmin(userName, password) {
-  if (userName === 'm' && password === '123') {
+  if (userName === 'manager' && password === 'overlook') {
     updateAdminPage()
   }
   $('.input').addClass('error').val('')
 }
 
 function checkInputValueCustomer(userName, password) {
-  if (userName === 'c' && password === '123') {
+  if (userName === 'customer' && password === 'overlook') {
     updateCustomerPage()
     createCustomer()
   }
@@ -286,6 +288,7 @@ function makeRoomBooking() {
   const roomNumber = $('#available__rooms--js').children('option:selected').data('room');
   let booking = hotel.bookRoom(roomNumber, dateValue, customerId);
   sendPostRequest(booking)
+  $('.all__done').show()
 }
 
 function searchCustomer() {
@@ -321,6 +324,7 @@ function makeAdminRoomBooking() {
   const roomNumber = $('#available__rooms--admin--js').children('option:selected').data('room')
   let booking = hotel.bookRoom(roomNumber, bookingDate, matchedCustomer.id);
   sendPostRequest(booking);
+  $('.all__done').show()
 }
 
 
