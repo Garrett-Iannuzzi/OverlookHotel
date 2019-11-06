@@ -55,6 +55,10 @@ describe('Admin', function() {
     expect(admin.getCustomerFirstName(1)).to.equal('Leatha');
   });
 
+  it('should be able to get a customers full name', () =>{
+    expect(admin.getCustomerByName('Kennedi Emard')).to.eql({ id: 4, name: "Kennedi Emard" });
+  });
+
   it('should be able to get bookings for a customer', () => {
     expect(admin.getCustomerBookingsDetails(1)).to.eql([
       {

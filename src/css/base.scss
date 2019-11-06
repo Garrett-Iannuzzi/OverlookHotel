@@ -1,6 +1,7 @@
 $primary-background: rgb(238, 221, 221);
 $secondary-color: hsl(240, 17%, 86%);
 $button-hover-color: hsla(346, 69%, 75%, 1);
+
 @mixin appendBookingDetails {
   background-color: $secondary-color;
   border: solid grey;
@@ -98,6 +99,10 @@ h2 {
   margin: .8em;
 }
 
+.error {
+  border: solid 3px red;
+}
+
 .list__guest--bookings {
   @include appendBookingDetails;
 }
@@ -108,6 +113,22 @@ h2 {
 
 .section__make--bookings {
   display: inline-block;
+}
+
+.search__customer--section {
+  border: solid 2px grey;
+  display: none;
+  height: 20em;
+  padding: 1em;
+  width: 90%;
+  &>h5 {
+    font-size: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  }
+  &>select {
+    width: 50%;
+  }
 }
 
 

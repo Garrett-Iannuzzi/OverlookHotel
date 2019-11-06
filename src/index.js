@@ -34,6 +34,19 @@ Promise.all([
   admin = new Admin(users, rooms, bookings, today);
 })
 
+// function sendPostRequest() {
+//   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
+//   {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': "application/json"
+//     },
+//     body: JSON.stringify(postBody)
+//   })
+//   .then(response => console.log('Booking Sent', response))
+//   .catch(error => console.log('Error'))
+// }
+
 function generateRandomUserId() {
   let randomNumOneToFifty = (Math.random() * 50);
   return Math.ceil(randomNumOneToFifty);
@@ -71,11 +84,14 @@ const adminView = () => (
                   <h2 class="h2__search">Search Current Customers: </h2>
                   <p class="customer__name" id="customer__name--js"></p>
                   <input class="div__input--customer" id="div__input--customer--js" placeholder="Search Customer">
-                  <button class="div__btn--customer" id="div__btn--customer--js" disabled>Search</button>
-                  <h2 class="h2__eneter--new--customer">Enter New Customer: </h2>
-                  <p class="customer__name--new" id="customer__name--new--js"></p>
-                  <input class="div__input--customer--new" id="div__input--customer--new--js" placeholder="First and Last Name">
-                  <button class="div__btn--customer" id="div__btn--new--customer--js" disabled>Add Customer</button>
+                  <button class="div__btn--customer" id="div__btn--customer--js">Search</button>
+                  <section class="search__customer--section">
+                    <h5>Name: <span class="customer__name--new" id="customer__name--new"></span></h5>
+                    <select class="admin__search--rooms" id="admin__search--rooms--js">
+                      <option class="list__admin--rooms">Booking History</option>
+                    </select>
+                    <h5>Customer Revenue: $<span id="customer__revenue"></span></h5>
+                  </section>
                 </div>
                 <div class="tabs__rooms" id="tab__bookings">
                   <h2 class="h2__most--popular--date" id="h2__most--popular--date--js">Most popular booking date: <span id="most__popular--day"></span> </h2>
@@ -156,6 +172,7 @@ function updateAdminPage() {
   $('.body').html(adminView())
   $('.home__btn').on('click', goHome)
   handleTabs()
+  adminHandler()
 }
 
 function updateCustomerPage() {
@@ -169,6 +186,10 @@ function updateCustomerPage() {
     $('.list__available--rooms').show().css('display','block')
   });
   customerBookinghandler()
+}
+
+function adminHandler() {
+  $('#div__btn--customer--js').on('click', searchCustomer);
 }
 
 function customerBookinghandler() {
@@ -264,8 +285,26 @@ function makeRoomBooking() {
   // console.log(roomBookingInfo)
   // console.log(customerId)
   // console.log(dateValue)
-  hotel.bookRoom(1, dateValue, customerId)
+  let booking = hotel.bookRoom(1, dateValue, customerId);
   console.log('hi')
-  
+  // sendPostRequest(booking)
 }
+
+function searchCustomer() {
+  let customerInputValue = $('#div__input--customer--js').val();
+  let matchedCustomer = admin.getCustomerByName(customerInputValue);
+  if (matchedCustomer) {
+    let customerBookings = admin.getCustomerBookingsDetails(matchedCustomer.id);
+    $('.search__customer--section').show();
+    $('#customer__name--new').text(matchedCustomer.name);
+    customerBookings.forEach(booking => {
+      let bookingsList = $(`<option>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</option>`);
+      $('#admin__search--rooms--js').append(bookingsList);
+    });
+    $('#customer__revenue').text(admin.getCustomerRevenue(matchedCustomer.id))
+  } else {
+    $('#div__input--customer--js').addClass('error').val('')
+  }
+}
+
 

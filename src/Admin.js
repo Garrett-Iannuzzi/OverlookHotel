@@ -43,6 +43,10 @@ class Admin extends Hotel {
     return firstName
   }
 
+  getCustomerByName(guestName) {
+    return this.customer.find(customer => guestName.toLowerCase() === customer.name.toLowerCase());
+  }
+
   getCustomerBookingsDetails(customerId) {
     return this.bookings.filter(booking => booking.userID === customerId);
   }
