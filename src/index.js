@@ -94,8 +94,7 @@ const adminView = () => (
                   </section>
                 </div>
                 <div class="tabs__rooms" id="tab__bookings">
-                  <h2 class="h2__most--popular--date" id="h2__most--popular--date--js">Most popular booking date: <span id="most__popular--day"></span> </h2>
-                  <h2 class="h2__most--rooms" id="h2__most--rooms--js">The date with the most rooms available: </h2>
+                  <h2 class="h2__most--popular--date">Add New Booking</h2>
                 </div>
               </div>
             </nav>
