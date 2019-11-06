@@ -34,18 +34,18 @@ Promise.all([
   admin = new Admin(users, rooms, bookings, today);
 })
 
-// function sendPostRequest() {
-//   fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
-//   {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': "application/json"
-//     },
-//     body: JSON.stringify(postBody)
-//   })
-//   .then(response => console.log('Booking Sent', response))
-//   .catch(error => console.log('Error'))
-// }
+function sendPostRequest(bookingData) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(bookingData)
+  })
+  .then(response => console.log('Booking Sent', response))
+  .catch(error => console.log('Error'))
+}
 
 function generateRandomUserId() {
   let randomNumOneToFifty = (Math.random() * 50);
@@ -271,22 +271,16 @@ function customerBooking() {
       availableRooms.forEach(room => {
        const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
         $('#available__rooms--js').append(roomsList);
-        // let roomNumber = $('#available__rooms--js').find(':selected').data('room')
-        // console.log(roomNumber)
       });
     })
 }
 
 function makeRoomBooking() {
-  const roomBookingInfo = $('#available__rooms--js');
   const dateValue = $('#date__picker--js').val();
   const customerId = customer.id;
-  // console.log(roomBookingInfo)
-  // console.log(customerId)
-  // console.log(dateValue)
-  let booking = hotel.bookRoom(1, dateValue, customerId);
-  console.log('hi')
-  // sendPostRequest(booking)
+  const roomNumber = $('#available__rooms--js').children('option:selected').data('room');
+  let booking = hotel.bookRoom(roomNumber, dateValue, customerId);
+  sendPostRequest(booking)
 }
 
 function searchCustomer() {
