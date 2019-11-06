@@ -21,4 +21,6 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
   
 ## Screenshots: 
 
-![Screen-one]()
+![Screen-one](src/images/Screen Shot 2019-11-06 at 2.29.46 AM.png)
+![Screen-two]()
+![Screen-gif]()
