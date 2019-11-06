@@ -22,5 +22,5 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 ## Screenshots: 
 
 ![Screen-one](src/images/screenshot-one.png)
-![Screen-two]()
+![Screen-two](src/images/screenshot-two.png)
 ![Screen-gif]()
