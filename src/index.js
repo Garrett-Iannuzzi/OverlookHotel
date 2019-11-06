@@ -173,7 +173,8 @@ function updateCustomerPage() {
 
 function customerBookinghandler() {
   $('#date__picker--js').on('keyup', customerBooking);
-  $('#room__types').on('change', filterRoomType)
+  $('#room__types').on('change', filterRoomType);
+  $('.btn__reservation').on('click', makeRoomBooking);
   handleTabs()
 }
 
@@ -237,22 +238,34 @@ function filterRoomType() {
     let filteredRooms = availableRooms.filter(room => room.roomType === type);
     $('#available__rooms--js').html('');
     filteredRooms.forEach(room => {
-      const roomItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
-      $('#available__rooms--js').append(roomItem);
+      const roomsItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+      $('#available__rooms--js').append(roomsItem);
     });
 } 
-  
+
 function customerBooking() {
     const dateValue = $('#date__picker--js').val()
     $('#available__rooms--js').on('click', () => {
       availableRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
       $('#available__rooms--js').html('');
       availableRooms.forEach(room => {
-       const roomsList = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+       const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
         $('#available__rooms--js').append(roomsList);
+        // let roomNumber = $('#available__rooms--js').find(':selected').data('room')
+        // console.log(roomNumber)
       });
     })
 }
 
-
+function makeRoomBooking() {
+  const roomBookingInfo = $('#available__rooms--js');
+  const dateValue = $('#date__picker--js').val();
+  const customerId = customer.id;
+  // console.log(roomBookingInfo)
+  // console.log(customerId)
+  // console.log(dateValue)
+  hotel.bookRoom(1, dateValue, customerId)
+  console.log('hi')
+  
+}
 
