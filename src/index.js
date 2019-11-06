@@ -10,6 +10,7 @@ let admin;
 let customer;
 let today = getCurrentDate();
 let randomCustomer = generateRandomUserId();
+let availableRooms;
 
 let users;
 let bookings;
@@ -110,11 +111,21 @@ const customerView = () => (
             <div class="tab__booking" id="tab__bookings">
               <button class="btn__bookings" id="btn__bookings--js">See Your Bookings</button>
               <ul class="list__guest--bookings"></ul>
-              <label class="date__picker--label" for="start">Make A Reservation:</label>
-              <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd">
-              <button class="btn__avalible--rooms" id="btn__avalible--rooms--js">See Available Rooms</button>
-              <ul class="list__avalible--rooms"></ul>
-              <button class="btn__reservation" id="btn__reservation--js">Make New Reservation</button>
+              <section class="section__make--booking">
+                <label class="date__picker--label">Make A Reservation:</label>
+                <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd">
+                <select id="room__types">
+                  <option>Select a room type</option>
+                  <option value="single room">Single Room</option>
+                  <option value="suite">Suite</option>
+                  <option value="junior suite">Junior Suite</option>
+                  <option value="residential suite">Residential Suite</option>
+                </select>
+                <select class="available__rooms" id="available__rooms--js">
+                  <option class="list__available--rooms">Select A Room</option>
+                </select>
+                <button class="btn__reservation" id="btn__reservation--js">Make New Reservation</button>
+              </section>
             </div>
           </div>
         </nav>
@@ -154,11 +165,16 @@ function updateCustomerPage() {
   $('#btn__bookings--js').on('click', function() {
     $('.list__guest--bookings').show().css('display','block')
   });
-  $('#btn__avalible--rooms--js').on('click', function() {
-    $('.list__avalible--rooms').show().css('display','block')
+  $('#btn__available--rooms--js').on('click', function() {
+    $('.list__available--rooms').show().css('display','block')
   });
+  customerBookinghandler()
+}
+
+function customerBookinghandler() {
+  $('#date__picker--js').on('keyup', customerBooking);
+  $('#room__types').on('change', filterRoomType)
   handleTabs()
-  handleCustomerBooking()
 }
 
 function getCurrentDate() {
@@ -192,14 +208,14 @@ $('.splash__btn--admin').on('click', () => {
 });
 
 function checkInputValueAdmin(userName, password) {
-  if (userName === 'manager' && password === '123') {
+  if (userName === 'm' && password === '123') {
     updateAdminPage()
   }
   $('.input').addClass('error').val('')
 }
 
 function checkInputValueCustomer(userName, password) {
-  if (userName === 'customer50' && password === '123') {
+  if (userName === 'c' && password === '123') {
     updateCustomerPage()
     createCustomer()
   }
@@ -216,19 +232,27 @@ function displayGuestBookings() {
   });
 }
 
-function handleCustomerBooking() {
-  $('#date__picker--js').on('keyup', () => {
-    let dateValue = $('#date__picker--js').val()
-    $('#btn__avalible--rooms--js').on('click', () => {
-      let avalibleRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
-      $('.list__avalible--rooms').html('');
-      avalibleRooms.forEach(room => {
-        let roomsList = $(`<li><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></li>`);
-        $('.list__avalible--rooms').append(roomsList);
+function filterRoomType() {
+    let type = $('#room__types').find(':selected').val();
+    let filteredRooms = availableRooms.filter(room => room.roomType === type);
+    $('#available__rooms--js').html('');
+    filteredRooms.forEach(room => {
+      const roomItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+      $('#available__rooms--js').append(roomItem);
+    });
+} 
+  
+function customerBooking() {
+    const dateValue = $('#date__picker--js').val()
+    $('#available__rooms--js').on('click', () => {
+      availableRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
+      $('#available__rooms--js').html('');
+      availableRooms.forEach(room => {
+       const roomsList = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+        $('#available__rooms--js').append(roomsList);
       });
     })
-  })
 }
-  
+
 
 

@@ -102,13 +102,14 @@ h2 {
   @include appendBookingDetails;
 }
 
-.list__avalible--rooms {
-  @include appendBookingDetails;
+.list__available--rooms {
+@include appendBookingDetails;
 }
 
-.error {
-  border: solid 4px red;
+.section__make--bookings {
+  display: inline-block;
 }
+
 
 
 
