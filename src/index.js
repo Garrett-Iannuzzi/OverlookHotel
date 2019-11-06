@@ -63,7 +63,7 @@ const adminView = () => (
 `
     <header>
       <h1>OL Hotel Admin Access </h1>
-      <button class="home__btn">Home</button>
+      <button class="home__btn" role="Home Screen">Home</button>
     </header>
     <main>
       <section>
@@ -75,16 +75,16 @@ const adminView = () => (
               </ul>
               <div class="tabs__stage">
                 <div id="tab__main">
-                  <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
-                  <h2 class="h2__rooms--available" id="label__rooms--available--js">Total Rooms Available Today: <span id="rooms__today">${admin.getTotalRoomsAvailableToday(today)}</span></p>
-                  <h2 class="h2__revenue" id="label__revenue--js">Todays Revenue: $ <span id="span__revenue">${admin.getTotalRoomsAvailableToday(today)}</span></h2>
-                  <h2 class="h2__rooms--taken" id="label__rooms--taken--js">Percentage of rooms occupied for today's date: <span id="span__percent--rooms"></span>${admin.getPercentRoomsOccupiedByDate(today)} %</h2>
+                  <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
+                  <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Total Rooms Available Today: <span id="rooms__today">${admin.getTotalRoomsAvailableToday(today)}</span></p>
+                  <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Todays Revenue: $ <span id="span__revenue">${admin.getTotalRoomsAvailableToday(today)}</span></h2>
+                  <h2 class="h2__rooms--taken" id="label__rooms--taken--js" tabindex="0">Percentage of rooms occupied for today's date: <span id="span__percent--rooms"></span>${admin.getPercentRoomsOccupiedByDate(today)} %</h2>
                 </div>
                 <div id="tab__customer">
                   <h2 class="h2__search">Search Current Customers: </h2>
                   <p class="customer__name" id="customer__name--js"></p>
-                  <input class="div__input--customer" id="div__input--customer--js" placeholder="Search Customer">
-                  <button class="div__btn--customer" id="div__btn--customer--js">Search</button>
+                  <input class="div__input--customer" id="div__input--customer--js" placeholder="Search Customer" role="Enter current customer name">
+                  <button class="div__btn--customer" id="div__btn--customer--js" role="Search current customer">Search</button>
                   <section class="search__customer--section">
                     <h5>Name: <span class="customer__name--new" id="customer__name--new"></span></h5>
                     <select class="admin__search--rooms" id="admin__search--rooms--js">
@@ -92,11 +92,15 @@ const adminView = () => (
                     </select>
                     <h5>Customer Revenue: $<span id="customer__revenue"></span></h5>
                   </section>
+                  <h2 class="h2__most--popular--date">Add New Booking For Current Customer:</h2>
+                  <input class="date__picker--admin" id="date__picker--admin--js" placeholder="yyyy/mm/dd" role="Choose date">
+                  <button class="btn__reservation--admin" id="btn__reservation--admin--js" role="See room list">See Available Rooms</button>
+                  <select class="available__rooms--admin" id="available__rooms--admin--js" tabindex="0">
+                    <option class="list__available--rooms--admin" tabindex="0">Select A Room</option>
+                  </select>
+                  <button class="btn__reservation--admin--final" id="btn__reservation--admin--final--js" role="See room list">Make Reservation</button>
+                  <h6 class="all__done">Booking Has Been Made!</h6>
                 </div>
-                <div class="tabs__rooms" id="tab__bookings">
-                  <h2 class="h2__most--popular--date">Add New Booking</h2>
-                </div>
-              </div>
             </nav>
       </section>
       </main>
@@ -107,7 +111,7 @@ const customerView = () => (
   `  
   <header class="header__user">
   <h1 class="header">Welcome To The Overlook Hotel</h1>
-  <button class="home__btn">Home</button>
+  <button class="home__btn" role="Home Screen">Home</button>
   </header>
   <main>
   <section>
@@ -118,28 +122,29 @@ const customerView = () => (
           </ul>
           <div class="tabs__stage">
             <div id="tab__main">
-              <h2 class="welcome__message">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
-              <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
-              <h2 class="h2__rooms--available" id="label__rooms--available--js">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
-              <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
+              <h2 class="welcome__message" tabindex="0">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
+              <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
+              <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
+              <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
             </div>
             <div class="tab__booking" id="tab__bookings">
-              <button class="btn__bookings" id="btn__bookings--js">See Your Bookings</button>
+              <button class="btn__bookings" id="btn__bookings--js" role="See bookings">See Your Bookings</button>
               <ul class="list__guest--bookings"></ul>
               <section class="section__make--booking">
                 <label class="date__picker--label">Make A Reservation:</label>
-                <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd">
+                <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd" role="Choose date">
                 <select id="room__types">
-                  <option>Select a room type</option>
+                  <option tabindex="0">Select a room type</option>
                   <option value="single room">Single Room</option>
                   <option value="suite">Suite</option>
                   <option value="junior suite">Junior Suite</option>
                   <option value="residential suite">Residential Suite</option>
                 </select>
-                <select class="available__rooms" id="available__rooms--js">
-                  <option class="list__available--rooms">Select A Room</option>
+                <select class="available__rooms" id="available__rooms--js" tabindex="0">
+                  <option class="list__available--rooms" tabindex="0">Select A Room</option>
                 </select>
-                <button class="btn__reservation" id="btn__reservation--js">Make New Reservation</button>
+                <button class="btn__reservation" id="btn__reservation--js" role="Make reservation">Make New Reservation</button>
+                <h6 class="all__done">Booking Has Been Made!</h6>
               </section>
             </div>
           </div>
@@ -168,8 +173,10 @@ function handleTabs() {
 }
 
 function updateAdminPage() {
-  $('.body').html(adminView())
-  $('.home__btn').on('click', goHome)
+  $('.body').html(adminView());
+  $('.home__btn').on('click', goHome);
+  $('#btn__reservation--admin--js').on('click', adminBooking);
+  $('#btn__reservation--admin--final--js').on('click', makeAdminRoomBooking)
   handleTabs()
   adminHandler()
 }
@@ -229,14 +236,14 @@ $('.splash__btn--admin').on('click', () => {
 });
 
 function checkInputValueAdmin(userName, password) {
-  if (userName === 'm' && password === '123') {
+  if (userName === 'manager' && password === 'overlook') {
     updateAdminPage()
   }
   $('.input').addClass('error').val('')
 }
 
 function checkInputValueCustomer(userName, password) {
-  if (userName === 'c' && password === '123') {
+  if (userName === 'customer' && password === 'overlook') {
     updateCustomerPage()
     createCustomer()
   }
@@ -281,6 +288,7 @@ function makeRoomBooking() {
   const roomNumber = $('#available__rooms--js').children('option:selected').data('room');
   let booking = hotel.bookRoom(roomNumber, dateValue, customerId);
   sendPostRequest(booking)
+  $('.all__done').show()
 }
 
 function searchCustomer() {
@@ -298,6 +306,25 @@ function searchCustomer() {
   } else {
     $('#div__input--customer--js').addClass('error').val('')
   }
+}
+
+function adminBooking() {
+  let bookingDate = $('#date__picker--admin--js').val();
+  availableRooms = hotel.getAvailableRoomDetailsByDate(bookingDate);
+  availableRooms.forEach(room => {
+    const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
+      $('#available__rooms--admin--js').append(roomsList);
+  });
+}
+
+function makeAdminRoomBooking() {
+  let customerName = $('#div__input--customer--js').val();
+  let matchedCustomer = admin.getCustomerByName(customerName)
+  let bookingDate = $('#date__picker--admin--js').val();
+  const roomNumber = $('#available__rooms--admin--js').children('option:selected').data('room')
+  let booking = hotel.bookRoom(roomNumber, bookingDate, matchedCustomer.id);
+  sendPostRequest(booking);
+  $('.all__done').show()
 }
 
 

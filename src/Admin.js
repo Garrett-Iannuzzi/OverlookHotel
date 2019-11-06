@@ -64,10 +64,6 @@ class Admin extends Hotel {
     return Number(totalRevenue)
   }
 
-  addBookingForCustomer() {
-
-  }
-
   removeBookingForCustomer() {
 
   }
