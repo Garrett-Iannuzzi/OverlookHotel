@@ -61,11 +61,7 @@ class Admin extends Hotel {
       })
       return total
     }, 0)
-    return Number(totalRevenue)
-  }
-
-  removeBookingForCustomer() {
-
+    return Number(totalRevenue).toFixed(2)
   }
 
 }

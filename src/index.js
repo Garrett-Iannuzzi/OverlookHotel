@@ -90,6 +90,8 @@ const adminView = () => (
                     <select class="admin__search--rooms" id="admin__search--rooms--js">
                       <option class="list__admin--rooms">Booking History</option>
                     </select>
+                    <button class="delete__booking" id="delete__booking--js">Delete Booking</button>
+                    <h5 class="booking__error--admin">Can't Cancel Past Bookings</h5>
                     <h5>Customer Revenue: $<span id="customer__revenue"></span></h5>
                   </section>
                   <h2 class="h2__most--popular--date">Add New Booking For Current Customer:</h2>
@@ -196,6 +198,7 @@ function updateCustomerPage() {
 
 function adminHandler() {
   $('#div__btn--customer--js').on('click', searchCustomer);
+  $('#delete__booking--js').on('click', deleteBooking);
 }
 
 function customerBookinghandler() {
@@ -236,14 +239,14 @@ $('.splash__btn--admin').on('click', () => {
 });
 
 function checkInputValueAdmin(userName, password) {
-  if (userName === 'manager' && password === 'overlook') {
+  if (userName === 'm' && password === '1') {
     updateAdminPage()
   }
   $('.input').addClass('error').val('')
 }
 
 function checkInputValueCustomer(userName, password) {
-  if (userName === 'customer' && password === 'overlook') {
+  if (userName === 'c' && password === '1') {
     updateCustomerPage()
     createCustomer()
   }
@@ -255,7 +258,7 @@ function displayGuestBookings() {
   let guestBookings = customer.getAllBookings()
   $('.list__guest--bookings').html('');
   guestBookings.forEach(booking => {
-    let bookingsList = $(`<li><h6>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
+    let bookingsList = $(`<li><h6>BookingDate: ${booking.date}<br> Room Number: ${booking.roomNumber}</h6></li>`);
     $('.list__guest--bookings').append(bookingsList);
   });
 }
@@ -299,7 +302,7 @@ function searchCustomer() {
     $('.search__customer--section').show();
     $('#customer__name--new').text(matchedCustomer.name);
     customerBookings.forEach(booking => {
-      let bookingsList = $(`<option>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</option>`);
+      let bookingsList = $(`<option data-id="${booking.id}" data-date="${booking.date}">Booking ID: ${booking.id}<br> Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</option>`);
       $('#admin__search--rooms--js').append(bookingsList);
     });
     $('#customer__revenue').text(admin.getCustomerRevenue(matchedCustomer.id))
@@ -322,9 +325,39 @@ function makeAdminRoomBooking() {
   let matchedCustomer = admin.getCustomerByName(customerName)
   let bookingDate = $('#date__picker--admin--js').val();
   const roomNumber = $('#available__rooms--admin--js').children('option:selected').data('room')
-  let booking = hotel.bookRoom(roomNumber, bookingDate, matchedCustomer.id);
+  let booking = admin.bookRoom(roomNumber, bookingDate, matchedCustomer.id);
   sendPostRequest(booking);
   $('.all__done').show()
 }
+
+function deleteBookingPost(id) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: id,
+    })
+  })
+  .then(response => response)
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+}
+
+function deleteBooking() {
+  let bookingIdDelete = $('#admin__search--rooms--js').children('option:selected').data('id');
+  let dateOfBookingToDelete = $('#admin__search--rooms--js').children('option:selected').data('date');
+  let todayTimeStamp = new Date(today).getTime();
+  let bookingTimeStamp = new Date(dateOfBookingToDelete).getTime();
+  if (bookingTimeStamp >= todayTimeStamp) {
+    deleteBookingPost(bookingIdDelete)
+  } else {
+    $('.booking__error--admin').show()
+  }
+}
+
+
+
 
 

@@ -35,6 +35,7 @@ header {
 }
 
 section {
+  display: contents;
   margin: 0 auto;
   width: 75%;
 }
@@ -75,8 +76,13 @@ li {
     width: 100%;
 }
 
+.list__available--rooms {
+@include appendBookingDetails;
+}
+
 .tabs__stage {
-  order: 1px solid #cecfd5;
+  display: contents;
+  border: 1px solid #cecfd5;
   background-color: $primary-background;
   border-radius: 0 0 6px 6px;
   border-top: 0px;
@@ -89,6 +95,7 @@ li {
 .tab__booking {
   display: flex;
   flex-direction: column;
+  height: 33em;
   text-align: center;
   align-items: center;
 }
@@ -101,7 +108,7 @@ h2 {
 
 .all__done {
   display: none;
-  font-size: 3em;
+  font-size: 2em;
   color: red;
   text-align: center;
 }
@@ -114,9 +121,6 @@ h2 {
   @include appendBookingDetails;
 }
 
-.list__available--rooms {
-@include appendBookingDetails;
-}
 
 .section__make--bookings {
   display: inline-block;
@@ -125,7 +129,7 @@ h2 {
 .search__customer--section {
   border: solid 2px grey;
   display: none;
-  height: 20em;
+  height: 8em;
   padding: 1em;
   width: 90%;
   &>h5 {
@@ -136,6 +140,15 @@ h2 {
   &>select {
     width: 50%;
   }
+}
+
+.booking__error--admin {
+  border: solid 2px grey;
+  color: red;
+  display: none;
+  font-size: 2em;
+  margin: .5em;
+  padding: 15px;
 }
 
 
