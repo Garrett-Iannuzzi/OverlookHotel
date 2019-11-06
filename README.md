@@ -23,4 +23,3 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 
 ![Screen-one](src/images/screenshot-one.png)
 ![Screen-two](src/images/screenshot-two.png)
-![Screen-gif](src/images/overlook-gif.mp4)
