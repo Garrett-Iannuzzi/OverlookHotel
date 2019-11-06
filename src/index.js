@@ -92,11 +92,14 @@ const adminView = () => (
                     </select>
                     <h5>Customer Revenue: $<span id="customer__revenue"></span></h5>
                   </section>
+                  <h2 class="h2__most--popular--date">Add New Booking For Current Customer:</h2>
+                  <input class="date__picker--admin" id="date__picker--admin--js" placeholder="yyyy/mm/dd" role="Choose date">
+                  <button class="btn__reservation--admin" id="btn__reservation--admin--js" role="See room list">See Available Rooms</button>
+                  <select class="available__rooms--admin" id="available__rooms--admin--js" tabindex="0">
+                    <option class="list__available--rooms--admin" tabindex="0">Select A Room</option>
+                  </select>
+                  <button class="btn__reservation--admin--final" id="btn__reservation--admin--final--js" role="See room list">Make Reservation</button>
                 </div>
-                <div class="tabs__rooms" id="tab__bookings">
-                  <h2 class="h2__most--popular--date">Add New Booking</h2>
-                </div>
-              </div>
             </nav>
       </section>
       </main>
@@ -168,8 +171,10 @@ function handleTabs() {
 }
 
 function updateAdminPage() {
-  $('.body').html(adminView())
-  $('.home__btn').on('click', goHome)
+  $('.body').html(adminView());
+  $('.home__btn').on('click', goHome);
+  $('#btn__reservation--admin--js').on('click', adminBooking);
+  $('#btn__reservation--admin--final--js').on('click', makeAdminRoomBooking)
   handleTabs()
   adminHandler()
 }
@@ -298,6 +303,24 @@ function searchCustomer() {
   } else {
     $('#div__input--customer--js').addClass('error').val('')
   }
+}
+
+function adminBooking() {
+  let bookingDate = $('#date__picker--admin--js').val();
+  availableRooms = hotel.getAvailableRoomDetailsByDate(bookingDate);
+  availableRooms.forEach(room => {
+    const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
+      $('#available__rooms--admin--js').append(roomsList);
+  });
+}
+
+function makeAdminRoomBooking() {
+  let customerName = $('#div__input--customer--js').val();
+  let matchedCustomer = admin.getCustomerByName(customerName)
+  let bookingDate = $('#date__picker--admin--js').val();
+  const roomNumber = $('#available__rooms--admin--js').children('option:selected').data('room')
+  let booking = hotel.bookRoom(roomNumber, bookingDate, matchedCustomer.id);
+  sendPostRequest(booking);
 }
 
 
