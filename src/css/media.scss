@@ -1,0 +1,236 @@
+$break-mobile: 420px;
+$break-tablet: 421px;
+$break-largeSize: 970px;
+
+@media only screen and (max-width: $break-mobile) {
+  
+  .section__splash {
+    &>h1 {
+      font-size: 2em;
+      margin: 1em;
+    }
+    &>h2 {
+      font-size: 1.3em;
+    }
+    &>.splash__btn--user, .splash__btn--admin {
+      font-size: .8em;
+      width: 9em;
+    }
+    &>#ul__dropdown--customer--js, #ul__dropdown--admin--js{
+      &>.input {
+        height: 2em;
+        margin: 1em;
+        width: 15em;
+      }
+      &>.submit__login {
+        font-size: .8em;
+        padding-bottom: 15px;
+        height: .3em;
+        margin: .5em;
+        width: 8em;
+      }
+    }
+  }
+
+  .header__user {
+    &>h1 {
+      font-size: 1.5em;
+    }
+    &>.home__btn {
+      height: 2em;
+    }
+  }
+
+  section {
+    &>.section__nav {
+      &>ul {
+        display: block;
+        font-size: .6em;
+        list-style-type: none;
+        width: 8em;
+      }
+    }
+    .tabs__stage {
+      font-size: .5em;
+    }
+
+    .section__make--booking {
+      &>.date__picker {
+        width: 7em;
+      }
+    }
+    .btn__bookings {
+      height: 5em;
+      width: 8em;
+    }
+    .btn__reservation, #room__types {
+      height: 5em;
+      width: 8em;
+    }
+  }
+
+}
+
+@media screen and (min-width: $break-tablet) {
+
+  .section__splash {
+    &>h1 {
+      font-size: 2em;
+      margin: 1em;
+    }
+    &>h2 {
+      font-size: 1.5em;
+    }
+    &>.splash__btn--user, .splash__btn--admin {
+      font-size: 1em;
+      width: 16em;
+    }
+    &>#ul__dropdown--customer--js, #ul__dropdown--admin--js{
+      &>.input {
+        height: 2.2em;
+        margin: 1em;
+        width: 20em;
+      }
+      &>.submit__login {
+        height: .3em;
+        margin: .5em;
+        font-size: 1em;
+        padding-bottom: 21px;
+        width: 9em;
+      }
+    }
+  }
+
+  .header__user {
+    &>h1 {
+      font-size: 2.1em;
+    }
+    &>.home__btn {
+      height: 1.5em;
+      width: 6em;
+    }
+  }
+
+  section {
+    &>.section__nav {
+      &>ul {
+        font-size: .6em;
+        list-style-type: none;
+        width: 15em;
+      }
+    }
+    .tabs__stage {
+      font-size: 1em;
+    }
+
+    .section__make--booking {
+      &>.date__picker {
+        width: 10em;
+      }
+    }
+    .btn__bookings {
+      height: 5em;
+      width: 10em;
+    }
+    .avaailable__rooms {
+      font-size: .3em;
+      height: 8em;
+    }
+
+    .btn__reservation, #room__types {
+      height: 5em;
+      width: 9em;
+    }
+  }
+}
+
+@media screen and (min-width: $break-largeSize){
+
+  .section__splash {
+    &>h1 {
+      font-size: 6em;
+      margin: 1em;
+    }
+    &>h2 {
+      font-size: 4em;
+    }
+    &>.splash__btn--user, .splash__btn--admin {
+      font-size: 1.5em;
+      height: 3em;
+      width: 28em;
+    }
+    &>#ul__dropdown--customer--js, #ul__dropdown--admin--js{
+      &>.input {
+        height: 5em;
+        margin: 1em;
+        width: 38em;
+      }
+      &>.submit__login {
+        height: 2em;
+        margin: .5em;
+        font-size: 2em;
+        padding-bottom: 5px;
+        width: 13em;
+      }
+    }
+  }
+
+
+  .header__user {
+    &>h1 {
+      font-size: 6em;
+    }
+    &>.home__btn {
+      height: 4em;
+      width: 10em;
+    }
+  }
+
+  section {
+
+    &>.section__nav {
+      &>ul {
+        font-size: 1em;
+        height: 10em;
+        width: 120em;
+      }
+    }
+
+    .tabs__stage {
+      font-size: 2em;
+      display: flex;
+    }
+
+    .section__make--booking {
+      &>.date__picker {
+        width: 30em;
+      }
+    }
+
+    .btn__bookings {
+      height: 2em;
+      width: 20em;
+    }
+
+    .date__picker--label {
+      font-size: 2em;
+    }
+
+    .avaailable__rooms {
+      font-size: .3em;
+      height: 8em;
+    }
+
+    #room__types {
+      height: 4em;
+      font-size: .5em;
+      width: 20em;
+    }
+    
+    .btn__reservation {
+      height: 2em;
+      width: 20em;
+    }
+  }
+
+}

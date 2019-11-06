@@ -34,6 +34,19 @@ Promise.all([
   admin = new Admin(users, rooms, bookings, today);
 })
 
+function sendPostRequest(bookingData) {
+  fetch('https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings',
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify(bookingData)
+  })
+  .then(response => console.log('Booking Sent', response))
+  .catch(error => console.log('Error'))
+}
+
 function generateRandomUserId() {
   let randomNumOneToFifty = (Math.random() * 50);
   return Math.ceil(randomNumOneToFifty);
@@ -71,15 +84,17 @@ const adminView = () => (
                   <h2 class="h2__search">Search Current Customers: </h2>
                   <p class="customer__name" id="customer__name--js"></p>
                   <input class="div__input--customer" id="div__input--customer--js" placeholder="Search Customer">
-                  <button class="div__btn--customer" id="div__btn--customer--js" disabled>Search</button>
-                  <h2 class="h2__eneter--new--customer">Enter New Customer: </h2>
-                  <p class="customer__name--new" id="customer__name--new--js"></p>
-                  <input class="div__input--customer--new" id="div__input--customer--new--js" placeholder="First and Last Name">
-                  <button class="div__btn--customer" id="div__btn--new--customer--js" disabled>Add Customer</button>
+                  <button class="div__btn--customer" id="div__btn--customer--js">Search</button>
+                  <section class="search__customer--section">
+                    <h5>Name: <span class="customer__name--new" id="customer__name--new"></span></h5>
+                    <select class="admin__search--rooms" id="admin__search--rooms--js">
+                      <option class="list__admin--rooms">Booking History</option>
+                    </select>
+                    <h5>Customer Revenue: $<span id="customer__revenue"></span></h5>
+                  </section>
                 </div>
                 <div class="tabs__rooms" id="tab__bookings">
-                  <h2 class="h2__most--popular--date" id="h2__most--popular--date--js">Most popular booking date: <span id="most__popular--day"></span> </h2>
-                  <h2 class="h2__most--rooms" id="h2__most--rooms--js">The date with the most rooms available: </h2>
+                  <h2 class="h2__most--popular--date">Add New Booking</h2>
                 </div>
               </div>
             </nav>
@@ -156,6 +171,7 @@ function updateAdminPage() {
   $('.body').html(adminView())
   $('.home__btn').on('click', goHome)
   handleTabs()
+  adminHandler()
 }
 
 function updateCustomerPage() {
@@ -171,9 +187,14 @@ function updateCustomerPage() {
   customerBookinghandler()
 }
 
+function adminHandler() {
+  $('#div__btn--customer--js').on('click', searchCustomer);
+}
+
 function customerBookinghandler() {
   $('#date__picker--js').on('keyup', customerBooking);
-  $('#room__types').on('change', filterRoomType)
+  $('#room__types').on('change', filterRoomType);
+  $('.btn__reservation').on('click', makeRoomBooking);
   handleTabs()
 }
 
@@ -237,22 +258,46 @@ function filterRoomType() {
     let filteredRooms = availableRooms.filter(room => room.roomType === type);
     $('#available__rooms--js').html('');
     filteredRooms.forEach(room => {
-      const roomItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
-      $('#available__rooms--js').append(roomItem);
+      const roomsItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+      $('#available__rooms--js').append(roomsItem);
     });
 } 
-  
+
 function customerBooking() {
     const dateValue = $('#date__picker--js').val()
     $('#available__rooms--js').on('click', () => {
       availableRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
       $('#available__rooms--js').html('');
       availableRooms.forEach(room => {
-       const roomsList = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+       const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
         $('#available__rooms--js').append(roomsList);
       });
     })
 }
 
+function makeRoomBooking() {
+  const dateValue = $('#date__picker--js').val();
+  const customerId = customer.id;
+  const roomNumber = $('#available__rooms--js').children('option:selected').data('room');
+  let booking = hotel.bookRoom(roomNumber, dateValue, customerId);
+  sendPostRequest(booking)
+}
+
+function searchCustomer() {
+  let customerInputValue = $('#div__input--customer--js').val();
+  let matchedCustomer = admin.getCustomerByName(customerInputValue);
+  if (matchedCustomer) {
+    let customerBookings = admin.getCustomerBookingsDetails(matchedCustomer.id);
+    $('.search__customer--section').show();
+    $('#customer__name--new').text(matchedCustomer.name);
+    customerBookings.forEach(booking => {
+      let bookingsList = $(`<option>Date: ${booking.date}<br> Room Number: ${booking.roomNumber}</option>`);
+      $('#admin__search--rooms--js').append(bookingsList);
+    });
+    $('#customer__revenue').text(admin.getCustomerRevenue(matchedCustomer.id))
+  } else {
+    $('#div__input--customer--js').addClass('error').val('')
+  }
+}
 
 
