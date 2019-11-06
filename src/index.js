@@ -63,7 +63,7 @@ const adminView = () => (
 `
     <header>
       <h1>OL Hotel Admin Access </h1>
-      <button class="home__btn">Home</button>
+      <button class="home__btn" role="Home Screen">Home</button>
     </header>
     <main>
       <section>
@@ -75,16 +75,16 @@ const adminView = () => (
               </ul>
               <div class="tabs__stage">
                 <div id="tab__main">
-                  <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
-                  <h2 class="h2__rooms--available" id="label__rooms--available--js">Total Rooms Available Today: <span id="rooms__today">${admin.getTotalRoomsAvailableToday(today)}</span></p>
-                  <h2 class="h2__revenue" id="label__revenue--js">Todays Revenue: $ <span id="span__revenue">${admin.getTotalRoomsAvailableToday(today)}</span></h2>
-                  <h2 class="h2__rooms--taken" id="label__rooms--taken--js">Percentage of rooms occupied for today's date: <span id="span__percent--rooms"></span>${admin.getPercentRoomsOccupiedByDate(today)} %</h2>
+                  <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
+                  <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Total Rooms Available Today: <span id="rooms__today">${admin.getTotalRoomsAvailableToday(today)}</span></p>
+                  <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Todays Revenue: $ <span id="span__revenue">${admin.getTotalRoomsAvailableToday(today)}</span></h2>
+                  <h2 class="h2__rooms--taken" id="label__rooms--taken--js" tabindex="0">Percentage of rooms occupied for today's date: <span id="span__percent--rooms"></span>${admin.getPercentRoomsOccupiedByDate(today)} %</h2>
                 </div>
                 <div id="tab__customer">
                   <h2 class="h2__search">Search Current Customers: </h2>
                   <p class="customer__name" id="customer__name--js"></p>
-                  <input class="div__input--customer" id="div__input--customer--js" placeholder="Search Customer">
-                  <button class="div__btn--customer" id="div__btn--customer--js">Search</button>
+                  <input class="div__input--customer" id="div__input--customer--js" placeholder="Search Customer" role="Enter current customer name">
+                  <button class="div__btn--customer" id="div__btn--customer--js" role="Search current customer">Search</button>
                   <section class="search__customer--section">
                     <h5>Name: <span class="customer__name--new" id="customer__name--new"></span></h5>
                     <select class="admin__search--rooms" id="admin__search--rooms--js">
@@ -107,7 +107,7 @@ const customerView = () => (
   `  
   <header class="header__user">
   <h1 class="header">Welcome To The Overlook Hotel</h1>
-  <button class="home__btn">Home</button>
+  <button class="home__btn" role="Home Screen">Home</button>
   </header>
   <main>
   <section>
@@ -118,28 +118,28 @@ const customerView = () => (
           </ul>
           <div class="tabs__stage">
             <div id="tab__main">
-              <h2 class="welcome__message">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
-              <h2 class="h2--date">Today's Date: <span id="todays__date">${today}</span></h2>
-              <h2 class="h2__rooms--available" id="label__rooms--available--js">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
-              <h2 class="h2__revenue" id="label__revenue--js">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
+              <h2 class="welcome__message" tabindex="0">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
+              <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
+              <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
+              <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
             </div>
             <div class="tab__booking" id="tab__bookings">
-              <button class="btn__bookings" id="btn__bookings--js">See Your Bookings</button>
+              <button class="btn__bookings" id="btn__bookings--js" role="See bookings">See Your Bookings</button>
               <ul class="list__guest--bookings"></ul>
               <section class="section__make--booking">
                 <label class="date__picker--label">Make A Reservation:</label>
-                <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd">
+                <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd" role="Choose date">
                 <select id="room__types">
-                  <option>Select a room type</option>
+                  <option tabindex="0">Select a room type</option>
                   <option value="single room">Single Room</option>
                   <option value="suite">Suite</option>
                   <option value="junior suite">Junior Suite</option>
                   <option value="residential suite">Residential Suite</option>
                 </select>
-                <select class="available__rooms" id="available__rooms--js">
-                  <option class="list__available--rooms">Select A Room</option>
+                <select class="available__rooms" id="available__rooms--js" tabindex="0">
+                  <option class="list__available--rooms" tabindex="0">Select A Room</option>
                 </select>
-                <button class="btn__reservation" id="btn__reservation--js">Make New Reservation</button>
+                <button class="btn__reservation" id="btn__reservation--js" role="Make reservation">Make New Reservation</button>
               </section>
             </div>
           </div>
