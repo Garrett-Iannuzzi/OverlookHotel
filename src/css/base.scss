@@ -96,7 +96,7 @@ li {
   display: flex;
   flex-direction: column;
   height: 33em;
-  text-align: center;
+  margin: 0 auto;
   align-items: center;
 }
 
@@ -156,6 +156,18 @@ h2 {
   font-size: 2em;
   margin: .5em;
   padding: 15px;
+}
+
+.no__room--p {
+  height: 2em;
+  background-color: $secondary-color;
+  width: 17em;
+  color: red;
+  position: absolute;
+  top: 6em;
+  text-align: center;
+  padding: 95px;
+  border: solid 4px grey;
 }
 
 
