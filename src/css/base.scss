@@ -76,10 +76,6 @@ li {
     width: 100%;
 }
 
-.list__available--rooms {
-@include appendBookingDetails;
-}
-
 .tabs__stage {
   display: contents;
   border: 1px solid #cecfd5;
@@ -90,15 +86,32 @@ li {
   margin-top: 2em;
   padding: 1em 1em;
   position: relative;
-}
+  &>.tab__booking {
+    display: flex;
+    flex-direction: column;
+    height: 33em;
+    margin: 0 auto;
+    align-items: center;
+    &>.available__rooms {
+      border: solid grey 3px;
+      display: block;
+      font-size: 1.3em;
+      overflow: scroll;
+      width: 95%;
+        &>li {
+          padding: 15px;
+          font-size: .8em;
+          width: 95%;
+        }
+      }
+      .room__typesYes {
+        font-size: 1em;
+        height: 2.5em;
+        width: 100%;
+      }
+    }
+  }
 
-.tab__booking {
-  display: flex;
-  flex-direction: column;
-  height: 33em;
-  text-align: center;
-  align-items: center;
-}
 
 #tab__main {
   .welcome__message {
@@ -156,6 +169,20 @@ h2 {
   font-size: 2em;
   margin: .5em;
   padding: 15px;
+}
+
+.no__room--p {
+  border: solid 4px grey;
+  background-color: $secondary-color;
+  color: red;
+  cursor: pointer;
+  display: none;
+  height: 2em;
+  position: absolute;
+  padding: 95px;
+  top: 6em;
+  text-align: center;
+  width: 17em;
 }
 
 

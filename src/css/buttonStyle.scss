@@ -86,18 +86,6 @@
   width: 40%;
 }
 
-.available__rooms {
-  @include buttonStyleBase;
-  border: solid 2px grey;
-  font-size: 1.3em;
-  height: 2em;
-  margin-top: 1.5em;
-  width: 40%;
-    &>option {
-      font-size: 2em;
-    }
-}
-
 .delete__booking {
   background-color: red;
   border-radius: 15px;
