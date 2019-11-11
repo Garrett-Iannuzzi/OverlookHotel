@@ -132,23 +132,21 @@ const adminView = () => (
         <div class="tab__booking" id="tab__bookings">
           <button class="btn__bookings" id="btn__bookings--js" role="See bookings">See Your Bookings</button>
           <ul class="list__guest--bookings"></ul>
-          <section class="section__make--booking">
             <label class="date__picker--label">Make A Reservation:</label>
             <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd" role="Choose date">
-            <select id="room__types">
+            <ul class="available__rooms" id="available__rooms--js" tabindex="0">
+              <li class="list__available--rooms" tabindex="0">Select A Date</option>
+            </ul>
+            <select class="room__typesYes" id="room__types">
               <option tabindex="0">Select a room type</option>
               <option value="single room">Single Room</option>
               <option value="suite">Suite</option>
               <option value="junior suite">Junior Suite</option>
               <option value="residential suite">Residential Suite</option>
             </select>
-            <select class="available__rooms" id="available__rooms--js" tabindex="0">
-              <option class="list__available--rooms" tabindex="0">Select A Room</option>
-            </select>
             <button class="btn__reservation" id="btn__reservation--js" role="Make reservation">Make New Reservation</button>
             <h6 class="all__done">Booking Has Been Made!</h6>
             <p class="no__room--p">No Matching Rooms, Sorry!</p>
-          </section>
           </div>
         </div>
       </nav>
@@ -265,17 +263,17 @@ function displayGuestBookings() {
 }
 
 function filterRoomType() {
-    let type = $('#room__types').find(':selected').val();
-    let filteredRooms = availableRooms.filter(room => room.roomType === type);
-    if (filteredRooms === ![]) {
-      $('#available__rooms--js').html('');
-      filteredRooms.forEach(room => {
-        const roomsItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
-        $('#available__rooms--js').append(roomsItem);
-      });
-    } else {
-      displayNoRoomError()
-    }
+  let type = $('#room__types').find(':selected').val();
+  let filteredRooms = availableRooms.filter(room => room.roomType === type);
+  if (filteredRooms.length > 0) {
+    $('#available__rooms--js').html('');
+    filteredRooms.forEach(room => {
+      const roomsItem = $(`<li><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></li>`);
+      $('#available__rooms--js').append(roomsItem);
+    });
+  } else {
+    displayNoRoomError()
+  }
 } 
 
 function customerBooking() {
@@ -284,7 +282,7 @@ function customerBooking() {
       availableRooms = hotel.getAvailableRoomDetailsByDate(dateValue)
       $('#available__rooms--js').html('');
       availableRooms.forEach(room => {
-       const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
+       const roomsList = $(`<li data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</li>`);
         $('#available__rooms--js').append(roomsList);
       });
     });
@@ -293,7 +291,7 @@ function customerBooking() {
 function makeRoomBooking() {
   const dateValue = $('#date__picker--js').val();
   const customerId = customer.id;
-  const roomNumber = $('#available__rooms--js').children('option:selected').data('room');
+  const roomNumber = $('#available__rooms--js').children('li:selected').data('room');
   let booking = hotel.bookRoom(roomNumber, dateValue, customerId);
   sendPostRequest(booking)
   $('.all__done').show()
