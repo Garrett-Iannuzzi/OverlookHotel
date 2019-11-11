@@ -119,36 +119,36 @@ const adminView = () => (
       <section>
       <nav class="section__nav">
       <ul class="nav__ul">
-      <li class="ul__tab--main"><a href="#tab__main">Main</a></li>
-            <li class="ul__tab--rooms"><a href="#tab__bookings">Bookings</a></li>
-            </ul>
-            <div class="tabs__stage">
-            <div id="tab__main">
-            <h2 class="welcome__message" tabindex="0">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
-            <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
-            <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
-            <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
-            </div>
-            <div class="tab__booking" id="tab__bookings">
-            <button class="btn__bookings" id="btn__bookings--js" role="See bookings">See Your Bookings</button>
-            <ul class="list__guest--bookings"></ul>
-            <section class="section__make--booking">
+        <li class="ul__tab--main"><a href="#tab__main">Main</a></li>
+        <li class="ul__tab--rooms"><a href="#tab__bookings">Bookings</a></li>
+      </ul>
+      <div class="tabs__stage">
+        <div id="tab__main">
+          <h2 class="welcome__message" tabindex="0">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
+          <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
+          <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
+          <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
+        </div>
+        <div class="tab__booking" id="tab__bookings">
+          <button class="btn__bookings" id="btn__bookings--js" role="See bookings">See Your Bookings</button>
+          <ul class="list__guest--bookings"></ul>
+          <section class="section__make--booking">
             <label class="date__picker--label">Make A Reservation:</label>
             <input class="date__picker" id="date__picker--js" placeholder="yyyy/mm/dd" role="Choose date">
             <select id="room__types">
-            <option tabindex="0">Select a room type</option>
-            <option value="single room">Single Room</option>
-            <option value="suite">Suite</option>
-            <option value="junior suite">Junior Suite</option>
-            <option value="residential suite">Residential Suite</option>
+              <option tabindex="0">Select a room type</option>
+              <option value="single room">Single Room</option>
+              <option value="suite">Suite</option>
+              <option value="junior suite">Junior Suite</option>
+              <option value="residential suite">Residential Suite</option>
             </select>
             <select class="available__rooms" id="available__rooms--js" tabindex="0">
-            <option class="list__available--rooms" tabindex="0">Select A Room</option>
+              <option class="list__available--rooms" tabindex="0">Select A Room</option>
             </select>
             <button class="btn__reservation" id="btn__reservation--js" role="Make reservation">Make New Reservation</button>
             <h6 class="all__done">Booking Has Been Made!</h6>
             <p class="no__room--p">No Matching Rooms, Sorry!</p>
-            </section>
+          </section>
           </div>
         </div>
       </nav>
@@ -267,11 +267,15 @@ function displayGuestBookings() {
 function filterRoomType() {
     let type = $('#room__types').find(':selected').val();
     let filteredRooms = availableRooms.filter(room => room.roomType === type);
-    $('#available__rooms--js').html('');
-    filteredRooms.forEach(room => {
-      const roomsItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
-      $('#available__rooms--js').append(roomsItem);
-    });
+    if (filteredRooms === ![]) {
+      $('#available__rooms--js').html('');
+      filteredRooms.forEach(room => {
+        const roomsItem = $(`<option><h6>Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</h6></option>`);
+        $('#available__rooms--js').append(roomsItem);
+      });
+    } else {
+      displayNoRoomError()
+    }
 } 
 
 function customerBooking() {
@@ -283,7 +287,7 @@ function customerBooking() {
        const roomsList = $(`<option data-room="${room.number}">Room Number: ${room.number}<br> Room Type: ${room.roomType}<br> Bidet: ${room.bidet}<br> Bed: ${room.bedSize}<br> Number of Beds: ${room.numBeds}<br> Cost: ${room.costPerNight}</option>`);
         $('#available__rooms--js').append(roomsList);
       });
-    })
+    });
 }
 
 function makeRoomBooking() {
@@ -359,7 +363,10 @@ function deleteBooking() {
 }
 
 function displayNoRoomError() {
-
+  $('.no__room--p').show();
+  $('.no__room--p').on('click', function() {
+    $('.no__room--p').hide();
+  });
 }
 
 

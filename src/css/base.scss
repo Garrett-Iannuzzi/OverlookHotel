@@ -159,15 +159,17 @@ h2 {
 }
 
 .no__room--p {
-  height: 2em;
+  border: solid 4px grey;
   background-color: $secondary-color;
-  width: 17em;
   color: red;
+  cursor: pointer;
+  display: none;
+  height: 2em;
   position: absolute;
+  padding: 95px;
   top: 6em;
   text-align: center;
-  padding: 95px;
-  border: solid 4px grey;
+  width: 17em;
 }
 
 
