@@ -114,6 +114,8 @@ const adminView = () => (
       <header class="header__user">
       <h1 class="header">Welcome To The Overlook Hotel</h1>
       <button class="home__btn" role="Home Screen">Home</button>
+      <h2 class="welcome__message" tabindex="0">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
+      <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
       </header>
       <main>
       <section>
@@ -124,8 +126,6 @@ const adminView = () => (
       </ul>
       <div class="tabs__stage">
         <div id="tab__main">
-          <h2 class="welcome__message" tabindex="0">Welcome ${admin.getCustomerFirstName(randomCustomer)}</h2>
-          <h2 class="h2--date" tabindex="0">Today's Date: <span id="todays__date">${today}</span></h2>
           <h2 class="h2__rooms--available" id="label__rooms--available--js" tabindex="0">Booking History: <span id="rooms__today">See Bookings Tab</span></p>
           <h2 class="h2__revenue" id="label__revenue--js" tabindex="0">Total Spent At Overlook: $ <span id="span__total--spent"></span></h2>
         </div>

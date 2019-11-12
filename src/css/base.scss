@@ -26,11 +26,17 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
 }
 
 header {
-  display: flex;
-  justify-content: space-evenly;
   margin: 3em;
   &>h1 {
+    display: inline-block;
     font-size: 4em;
+  }
+  &>.h2--date {
+    height: 4em;
+    &>span {
+      display: block;
+      font-size: 1em;
+    }
   }
 }
 
@@ -121,9 +127,41 @@ li {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 3em;
   height: 1em;
-  margin: .8em;
+  margin: 1em 0em 1em 0em;
+}
+
+.h2__rooms--available {
+  border: solid 20px grey;
+  border-style: double;
+  background-color: $secondary-color;
+  font-size: 1.5em;
+  height: 4em;
+  padding: 50px;
+  &>span {
+    background-color: $secondary-color;
+    display: block;
+    font-size: 1em;
+    padding: 31px;
+    text-align: center;
+  }
+}
+
+.h2__revenue {
+  border: solid 20px grey;
+  border-style: double;
+  background-color: $secondary-color;
+  font-size: 1.5em;
+  height: 4em;
+  padding: 50px;
+  &>span {
+    background-color: $secondary-color;
+    display: block;
+    font-size: 1em;
+    padding: 31px;
+    text-align: center;
+  }
 }
 
 .all__done {
