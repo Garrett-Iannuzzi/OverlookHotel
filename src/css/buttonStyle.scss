@@ -44,8 +44,10 @@
 .home__btn {
   border: solid 3px grey;
   border-radius: 5px;
+  display: inline-block;
   font-size: 1em;
   font-weight: 800;
+  float: right;
   height: 5em;
   width: 15em;
   &:hover {
