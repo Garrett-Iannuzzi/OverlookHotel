@@ -27,9 +27,15 @@ $button-hover-color: hsla(346, 69%, 75%, 1);
 
 header {
   margin: 3em;
+  font-size: 1em;
   &>h1 {
     display: inline-block;
-    font-size: 4em;
+    font-size: 1em;
+  }
+  &>h2 {
+    font-size: 1em;
+    height: 1em;
+    margin: 1em 0em 1em 0em;
   }
   &>.h2--date {
     height: 4em;
@@ -126,11 +132,7 @@ li {
   }
 }
 
-h2 {
-  font-size: 3em;
-  height: 1em;
-  margin: 1em 0em 1em 0em;
-}
+
 
 .h2__rooms--available {
   border: solid 20px grey;
@@ -172,7 +174,7 @@ h2 {
 }
 
 .error {
-  border: solid 3px red;
+  border: solid 1px red;
 }
 
 .list__guest--bookings {
