@@ -5,23 +5,19 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  margin-top: 5em;
-  margin-bottom: 5em;
+  margin-top: 3em;
+  margin-bottom: 3em;
   text-align: center;
-  width: 75%;
-
+  width: 85%;
   &>h1 {
     background-color: $secondary-color;
-    font-size: 6em;
-    margin: 2em;
-    text-decoration: underline;
+    font-size: 2em;
+    margin: .5em;
   }
-
   &>h2 {
     background-color: $secondary-color;
-    font-size: 3em;
+    font-size: .8em;
   }
-
   .div__dropdown {
     background-color: $secondary-color;
   }
@@ -37,9 +33,10 @@ form {
 
 input {
   border: solid 1px grey;
-  height: 5em;
-  margin: 2em;
-  width: 33em;
+  height: .7em;
+  margin: .8em;
+  padding: 5px;
+  width: 35%;
 }
 
 .hidden {
