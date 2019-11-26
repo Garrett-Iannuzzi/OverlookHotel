@@ -102,26 +102,30 @@ li {
   &>.tab__booking {
     border: solid 1px grey;
     display: flex;
+    font-size: .4em;
     flex-direction: column;
-    height: 23em;
-    margin: 0 auto;
     align-items: center;
-    &>.available__rooms {
-      border: solid 1px grey;
-      display: block;
-      font-size: 1em;
-      overflow: scroll;
-      width: 95%;
-        &>li {
+  &>.available__rooms {
+    display: block;
+    font-size: 1em;
+    text-align: center;
+    margin: 0 auto;
+    height: 10em;
+    overflow: scroll;
+    width: 100%;
+      &>li {
           padding: 15px;
+          border-radius: 5px;
+          margin: 0 auto;
+          background-color: none;
           font-size: .8em;
-          width: 95%;
+          width: 40%;
         }
       }
       .room__typesYes {
         font-size: 1em;
         height: 2.5em;
-        width: 100%;
+        width: 40%;
       }
     }
   }
@@ -180,6 +184,13 @@ li {
 
 .list__guest--bookings {
   @include appendBookingDetails;
+  background-color: $primary-background;
+  max-height: 15em;
+  overflow: auto;
+  width: 40%;
+  &>li {
+    width: 100%;
+  }
 }
 
 
